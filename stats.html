@@ -3,198 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⚾ 풀베이스 2025 시즌 기록</title>
+<title>⚾ 풀베이스 시즌 기록</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #f0f4f8;
-    color: #1a2a3a;
-    min-height: 100vh;
-    padding: 40px 20px;
-  }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #1a2a3a; min-height: 100vh; padding: 40px 20px; }
   .container { max-width: 900px; margin: 0 auto; }
-  .home-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #64748b;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    transition: all 0.2s;
-  }
-  .home-link:hover {
-    color: #2563eb;
-    border-color: #cbd5e1;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
+  .home-link { display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; width: 36px; height: 36px; border-radius: 10px; text-decoration: none; color: #64748b; background: #fff; border: 1px solid #e2e8f0; transition: all 0.2s; }
+  .home-link:hover { color: #2563eb; border-color: #cbd5e1; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
   .header { text-align: center; margin-bottom: 36px; }
-  .header::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #2563eb, #f59e0b);
-    margin: 20px auto 0;
-    border-radius: 2px;
-  }
+  .header::after { content: ''; display: block; width: 80px; height: 4px; background: linear-gradient(90deg, #2563eb, #f59e0b); margin: 20px auto 0; border-radius: 2px; }
   .header h1 { font-size: 32px; font-weight: 900; color: #1a2a3a; }
-  .player-header {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 28px;
-    text-align: center;
-    margin-bottom: 24px;
-    display: none;
-  }
-  .player-header.active { display: block; }
+  .player-header { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 24px; }
   .player-header .number { font-size: 14px; color: #94a3b8; font-weight: 700; letter-spacing: 1px; }
-  .player-header .name { font-size: 28px; font-weight: 900; color: #1a2a3a; margin: 4px 0 12px; }
-  .stat-section-title {
-    font-size: 13px; font-weight: 700; color: #d97706;
-    letter-spacing: 3px; margin-bottom: 12px; padding-left: 4px;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .stat-section-title::before {
-    content: ''; display: inline-block; width: 3px; height: 16px;
-    background: #d97706; border-radius: 2px;
-  }
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-  .stat-box {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 16px 12px;
-    text-align: center;
-  }
+  .player-header .name { font-size: 28px; font-weight: 900; color: #1a2a3a; margin: 4px 0; }
+  .year-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
+  .year-tab { padding: 6px 16px; border-radius: 20px; border: 1px solid #e2e8f0; background: #fff; color: #64748b; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Noto Sans KR', sans-serif; }
+  .year-tab:hover { border-color: #cbd5e1; color: #1a2a3a; }
+  .year-tab.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .stat-section-title { font-size: 13px; font-weight: 700; color: #d97706; letter-spacing: 3px; margin-bottom: 12px; padding-left: 4px; display: inline-flex; align-items: center; gap: 8px; }
+  .stat-section-title::before { content: ''; display: inline-block; width: 3px; height: 16px; background: #d97706; border-radius: 2px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
+  .stat-box { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 12px; text-align: center; }
   .stat-box .val { font-size: 22px; font-weight: 900; color: #1a2a3a; }
   .stat-box .val.highlight { color: #2563eb; }
   .stat-box .val.red { color: #dc2626; }
   .stat-box .label { font-size: 11px; color: #94a3b8; margin-top: 2px; letter-spacing: 1px; }
   .no-record { text-align: center; color: #94a3b8; padding: 40px; font-size: 14px; }
-  .player-nav {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    justify-content: center; margin-bottom: 32px;
-  }
-  .player-btn {
-    padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0;
-    background: #ffffff; color: #64748b; font-size: 13px; font-weight: 600;
-    cursor: pointer; transition: all 0.2s; font-family: 'Noto Sans KR', sans-serif;
-  }
+  .player-nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 32px; }
+  .player-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; background: #fff; color: #64748b; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Noto Sans KR', sans-serif; }
   .player-btn:hover { border-color: #cbd5e1; color: #1a2a3a; }
-  .player-btn.active { background: #2563eb; color: #ffffff; border-color: #2563eb; }
-  .footer {
-    text-align: center; margin-top: 48px; padding-top: 24px;
-    border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 12px;
-  }
-  @media (max-width: 640px) {
-    .stat-grid { grid-template-columns: repeat(3, 1fr); }
-    .header h1 { font-size: 24px; }
-    .player-header .name { font-size: 22px; }
-  }
+  .player-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .footer { text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 12px; }
+  @media (max-width: 640px) { .stat-grid { grid-template-columns: repeat(3, 1fr); } .header h1 { font-size: 24px; } .player-header .name { font-size: 22px; } }
 </style>
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 <div class="container">
   <a href="roster.html" class="home-link"><i data-lucide="chevron-left"></i></a>
-  <div class="header">
-    <h1>2025 시즌 개인 기록</h1>
-  </div>
+  <div class="header"><h1>시즌 개인 기록</h1></div>
   <div class="player-nav" id="playerNav"></div>
   <div id="playerContent"></div>
-  <div class="footer">⚾ 풀베이스 2025 KTBO 리그 개인 기록</div>
+  <div class="footer">⚾ 풀베이스 KTBO 리그 개인 기록</div>
 </div>
 <script>
-const players = {
-  "공민호": { number: "#0", batting: { G:16, AVG:".534", AB:58, H:31, "2B":21, "3B":2, HR:7, RBI:21, R:20, BB:5, K:1, SB:0, OBP:".563", SLG:".966", OPS:"1.528" }},
-  "최철진": { number: "#20", batting: { G:25, AVG:".364", AB:66, H:24, "2B":23, "3B":1, HR:0, RBI:3, R:10, BB:9, K:5, SB:1, OBP:".440", SLG:".379", OPS:".819" }, pitching: { G:6, ERA:"9.90", IP:"10", W:0, L:0, H:11, BB:4, K:8, WHIP:"1.50", BAA:".347" }},
-  "고선옥": { number: "#57", batting: { G:26, AVG:".344", AB:90, H:31, "2B":18, "3B":2, HR:11, RBI:33, R:15, BB:4, K:20, SB:0, OBP:".365", SLG:".733", OPS:"1.098" }, pitching: { G:14, ERA:"5.70", IP:"50", W:6, L:4, H:95, BB:23, K:50, WHIP:"2.36", BAA:".278" }},
-  "신승엽": { number: "#10", batting: { G:19, AVG:".323", AB:65, H:21, "2B":14, "3B":4, HR:3, RBI:11, R:9, BB:2, K:15, SB:0, OBP:".343", SLG:".523", OPS:".866" }, pitching: { G:7, ERA:"21.32", IP:"12.2", W:0, L:1, H:30, BB:13, K:15, WHIP:"3.39", BAA:".255" }},
-  "이영철": { number: "#14", batting: { G:28, AVG:".190", AB:79, H:15, "2B":15, "3B":0, HR:0, RBI:4, R:11, BB:4, K:14, SB:0, OBP:".226", SLG:".190", OPS:".416" }},
-  "심민성": { number: "#23", batting: { G:16, AVG:".184", AB:50, H:9, "2B":9, "3B":0, HR:0, RBI:3, R:3, BB:2, K:1, SB:0, OBP:".212", SLG:".180", OPS:".392" }, pitching: { G:4, ERA:"7.98", IP:"14.2", W:1, L:0, H:17, BB:11, K:13, WHIP:"1.91", BAA:".283" }},
-  "박서진": { number: "#31", batting: { G:12, AVG:".462", AB:39, H:18, "2B":9, "3B":0, HR:4, RBI:20, R:13, BB:6, K:6, SB:0, OBP:".533", SLG:"1.154", OPS:"1.687" }, pitching: { G:1, ERA:"0.00", IP:"0", W:0, L:0, H:0, BB:0, K:0, WHIP:"0.00", BAA:".000" }},
-  "고덕한": { number: "#52", batting: { G:12, AVG:".375", AB:40, H:15, "2B":13, "3B":2, HR:0, RBI:7, R:11, BB:5, K:2, SB:0, OBP:".444", SLG:".425", OPS:".869" }, pitching: { G:5, ERA:"6.75", IP:"12", W:0, L:2, H:14, BB:12, K:14, WHIP:"2.17", BAA:".286" }},
-  "우탁형": { number: "#1", batting: { G:14, AVG:".238", AB:42, H:10, "2B":10, "3B":0, HR:0, RBI:1, R:6, BB:3, K:4, SB:0, OBP:".289", SLG:".238", OPS:".527" }},
-  "최대웅": { number: "#45", batting: { G:7, AVG:".423", AB:26, H:11, "2B":10, "3B":1, HR:0, RBI:4, R:7, BB:4, K:3, SB:0, OBP:".500", SLG:".462", OPS:".962" }},
-  "조상현": { number: "#33", batting: { G:13, AVG:".229", AB:35, H:8, "2B":7, "3B":1, HR:0, RBI:2, R:3, BB:3, K:11, SB:1, OBP:".289", SLG:".257", OPS:".547" }},
-  "우현동": { number: "#27", batting: { G:10, AVG:".344", AB:32, H:11, "2B":11, "3B":0, HR:0, RBI:4, R:4, BB:2, K:2, SB:0, OBP:".382", SLG:".344", OPS:".726" }},
-  "조형우": { number: "#48", batting: { G:7, AVG:".571", AB:21, H:12, "2B":11, "3B":1, HR:1, RBI:6, R:5, BB:0, K:0, SB:0, OBP:".609", SLG:".619", OPS:"1.228" }},
-  "황재원": { number: "#18", batting: { G:22, AVG:".186", AB:59, H:11, "2B":8, "3B":3, HR:0, RBI:5, R:8, BB:3, K:0, SB:0, OBP:".273", SLG:".237", OPS:".510" }},
-  "김진엽": { number: "#80", batting: { G:8, AVG:".190", AB:21, H:4, "2B":4, "3B":0, HR:0, RBI:3, R:1, BB:2, K:1, SB:1, OBP:".217", SLG:".190", OPS:".408" }, pitching: { G:5, ERA:"1.97", IP:"32", W:0, L:0, H:25, BB:4, K:39, WHIP:"0.91", BAA:".205" }},
-  "조재성": { number: "#5" },
-  "윤태현": { number: "#25" }
+const data = {
+"공민호": { number:"#0", "2024": { batting:{G:30,AVG:".352",AB:108,H:38,HR:7,RBI:25,R:27,BB:9,K:2,SB:0,OBP:".398",SLG:".574",OPS:".972"}}, "2025": { batting:{G:16,AVG:".534",AB:58,H:31,HR:7,RBI:21,R:20,BB:5,K:1,SB:0,OBP:".563",SLG:".966",OPS:"1.528"}}},
+"최철진": { number:"#20", "2024": { batting:{G:34,AVG:".309",AB:97,H:17,HR:5,RBI:12,R:10,BB:6,K:1,SB:0,OBP:".415",SLG:".327",OPS:".743"}, pitching:{G:3,ERA:"4.76",IP:"5.2",W:0,L:0,K:5,BB:3,BAA:".208"}}, "2025": { batting:{G:25,AVG:".364",AB:66,H:24,HR:0,RBI:3,R:10,BB:9,K:5,SB:1,OBP:".440",SLG:".379",OPS:".819"}, pitching:{G:6,ERA:"9.90",IP:"10",W:0,L:0,K:8,BB:4,BAA:".347"}}},
+"고선옥": { number:"#57", "2024": { batting:{G:34,AVG:".325",AB:117,H:38,HR:9,RBI:35,R:23,BB:7,K:18,SB:1,OBP:".357",SLG:".581",OPS:".938"}, pitching:{G:17,ERA:"4.98",IP:"72.1",W:3,L:3,K:54,BB:33,BAA:".272"}}, "2025": { batting:{G:26,AVG:".344",AB:90,H:31,HR:11,RBI:33,R:15,BB:4,K:20,SB:0,OBP:".365",SLG:".733",OPS:"1.098"}, pitching:{G:14,ERA:"5.70",IP:"50",W:6,L:4,K:50,BB:23,BAA:".278"}}},
+"신승엽": { number:"#10", "2025": { batting:{G:19,AVG:".323",AB:65,H:21,HR:3,RBI:11,R:9,BB:2,K:15,SB:0,OBP:".343",SLG:".523",OPS:".866"}, pitching:{G:7,ERA:"21.32",IP:"12.2",W:0,L:1,K:15,BB:13,BAA:".255"}}},
+"이영철": { number:"#14", "2024": { batting:{G:31,AVG:".233",AB:73,H:17,HR:0,RBI:13,R:15,BB:3,K:18,SB:0,OBP:".263",SLG:".260",OPS:".523"}}, "2025": { batting:{G:28,AVG:".190",AB:79,H:15,HR:0,RBI:4,R:11,BB:4,K:14,SB:0,OBP:".226",SLG:".190",OPS:".416"}}},
+"심민성": { number:"#23", "2024": { batting:{G:13,AVG:".321",AB:28,H:9,HR:0,RBI:3,R:3,BB:7,K:2,SB:0,OBP:".387",SLG:".321",OPS:".709"}, pitching:{G:4,ERA:"1.69",IP:"10.2",W:0,L:1,K:6,BB:9,BAA:".125"}}, "2025": { batting:{G:16,AVG:".184",AB:50,H:9,HR:0,RBI:3,R:3,BB:2,K:1,SB:0,OBP:".212",SLG:".180",OPS:".392"}, pitching:{G:4,ERA:"7.98",IP:"14.2",W:1,L:0,K:13,BB:11,BAA:".283"}}},
+"박서진": { number:"#31", "2024": { batting:{G:32,AVG:".412",AB:114,H:47,HR:17,RBI:40,R:41,BB:17,K:10,SB:0,OBP:".485",SLG:".921",OPS:"1.406"}, pitching:{G:4,ERA:"9.00",IP:"5",W:0,L:0,K:15,BB:6,BAA:".188"}}, "2025": { batting:{G:12,AVG:".462",AB:39,H:18,HR:4,RBI:20,R:13,BB:6,K:6,SB:0,OBP:".533",SLG:"1.154",OPS:"1.687"}}},
+"고덕한": { number:"#52", "2024": { batting:{G:30,AVG:".340",AB:100,H:34,HR:2,RBI:20,R:21,BB:6,K:7,SB:2,OBP:".370",SLG:".430",OPS:".800"}, pitching:{G:5,ERA:"3.00",IP:"9",W:0,L:0,K:7,BB:8,BAA:".152"}}, "2025": { batting:{G:12,AVG:".375",AB:40,H:15,HR:0,RBI:7,R:11,BB:5,K:2,SB:0,OBP:".444",SLG:".425",OPS:".869"}, pitching:{G:5,ERA:"6.75",IP:"12",W:0,L:2,K:14,BB:12,BAA:".286"}}},
+"우탁형": { number:"#1", "2024": { batting:{G:14,AVG:".250",AB:32,H:8,HR:0,RBI:3,R:0,BB:4,K:2,SB:1,OBP:".242",SLG:".344",OPS:".586"}}, "2025": { batting:{G:14,AVG:".238",AB:42,H:10,HR:0,RBI:1,R:6,BB:3,K:4,SB:0,OBP:".289",SLG:".238",OPS:".527"}}},
+"최대웅": { number:"#45", "2024": { batting:{G:22,AVG:".276",AB:70,H:19,HR:0,RBI:5,R:8,BB:3,K:10,SB:0,OBP:".363",SLG:".343",OPS:".705"}}, "2025": { batting:{G:7,AVG:".423",AB:26,H:11,HR:0,RBI:4,R:7,BB:4,K:3,SB:0,OBP:".500",SLG:".462",OPS:".962"}}},
+"조상현": { number:"#33", "2024": { batting:{G:18,AVG:".340",AB:47,H:16,HR:4,RBI:17,R:12,BB:5,K:7,SB:3,OBP:".396",SLG:".638",OPS:"1.035"}, pitching:{G:1,ERA:"2.25",IP:"4",W:0,L:0,K:3,BB:3,BAA:".267"}}, "2025": { batting:{G:13,AVG:".229",AB:35,H:8,HR:0,RBI:2,R:3,BB:3,K:11,SB:1,OBP:".289",SLG:".257",OPS:".547"}}},
+"우현동": { number:"#27", "2024": { batting:{G:22,AVG:".439",AB:66,H:29,HR:1,RBI:10,R:20,BB:3,K:7,SB:3,OBP:".464",SLG:".500",OPS:".964"}}, "2025": { batting:{G:10,AVG:".344",AB:32,H:11,HR:0,RBI:4,R:4,BB:2,K:2,SB:0,OBP:".382",SLG:".344",OPS:".726"}}},
+"조형우": { number:"#48", "2024": { batting:{G:18,AVG:".302",AB:53,H:16,HR:1,RBI:11,R:10,BB:3,K:3,SB:0,OBP:".339",SLG:".358",OPS:".698"}, pitching:{G:1,ERA:"2.25",IP:"4",W:0,L:0,K:3,BB:2,BAA:".267"}}, "2025": { batting:{G:7,AVG:".571",AB:21,H:12,HR:1,RBI:6,R:5,BB:0,K:0,SB:0,OBP:".609",SLG:".619",OPS:"1.228"}}},
+"황재원": { number:"#18", "2024": { batting:{G:33,AVG:".276",AB:87,H:24,HR:1,RBI:15,R:16,BB:7,K:14,SB:1,OBP:".356",SLG:".356",OPS:".679"}}, "2025": { batting:{G:22,AVG:".186",AB:59,H:11,HR:0,RBI:5,R:8,BB:3,K:0,SB:0,OBP:".273",SLG:".237",OPS:".510"}}},
+"김진엽": { number:"#80", "2024": { batting:{G:14,AVG:".280",AB:25,H:7,HR:0,RBI:3,R:5,BB:3,K:2,SB:0,OBP:".400",SLG:".280",OPS:".680"}, pitching:{G:21,ERA:"2.38",IP:"147.1",W:0,L:0,K:169,BB:28,BAA:".231"}}, "2025": { batting:{G:8,AVG:".190",AB:21,H:4,HR:0,RBI:3,R:1,BB:2,K:1,SB:1,OBP:".217",SLG:".190",OPS:".408"}, pitching:{G:5,ERA:"1.97",IP:"32",W:0,L:0,K:39,BB:4,BAA:".205"}}},
+"조재성": { number:"#5", "2024": { batting:{G:16,AVG:".277",AB:47,H:13,HR:0,RBI:2,R:3,BB:7,K:0,SB:0,OBP:".320",SLG:".319",OPS:".639"}}},
+"윤태현": { number:"#25", "2024": { batting:{G:8,AVG:".478",AB:23,H:11,HR:3,RBI:10,R:9,BB:2,K:1,SB:0,OBP:".520",SLG:".913",OPS:"1.433"}}}
 };
 
-const battingLabels = { G:"경기", AVG:"타율", AB:"타석", H:"안타", "2B":"1루타", "3B":"3루타", HR:"홈런", RBI:"타점", R:"득점", BB:"사구", K:"삼진", SB:"도루", OBP:"출루율", SLG:"장타율", OPS:"OPS" };
-const pitchingLabels = { G:"경기", ERA:"평균자책", IP:"이닝", W:"승", L:"패", H:"피안타", BB:"사사구", K:"삼진", WHIP:"WHIP", BAA:"피안타율" };
+const bL = {G:"경기",AVG:"타율",AB:"타석",H:"안타",HR:"홈런",RBI:"타점",R:"득점",BB:"사구",K:"삼진",SB:"도루",OBP:"출루율",SLG:"장타율",OPS:"OPS"};
+const pL = {G:"경기",ERA:"평균자책",IP:"이닝",W:"승",L:"패",K:"삼진",BB:"사사구",BAA:"피안타율"};
 
-function getHighlightClass(key, val) {
-  if (["AVG","OBP","SLG","OPS"].includes(key) && parseFloat(val) >= 0.350) return "highlight";
-  if (key === "HR" && val >= 3) return "highlight";
-  if (key === "ERA" && parseFloat(val) <= 4.0) return "highlight";
-  if (key === "ERA" && parseFloat(val) >= 10.0) return "red";
+function hl(k,v) {
+  if (["AVG","OBP","SLG","OPS"].includes(k) && parseFloat(v)>=0.350) return "highlight";
+  if (k==="HR" && v>=3) return "highlight";
+  if (k==="ERA" && parseFloat(v)<=4.0) return "highlight";
+  if (k==="ERA" && parseFloat(v)>=10.0) return "red";
   return "";
 }
 
-function showPlayer(name) {
+function calcCareer(p) {
+  const years = Object.keys(p).filter(k => k!=="number");
+  if (years.length===0) return null;
+  let bat=null, pit=null;
+  let tG=0,tAB=0,tH=0,tHR=0,tRBI=0,tR=0,tBB=0,tK=0,tSB=0;
+  let pG=0,pIP=0,pW=0,pL2=0,pK=0,pBB=0,pER=0;
+  let hasBat=false, hasPit=false;
+  years.forEach(y => {
+    if (p[y].batting) {
+      hasBat=true;
+      const b=p[y].batting;
+      tG+=b.G; tAB+=b.AB; tH+=b.H; tHR+=b.HR; tRBI+=b.RBI; tR+=b.R; tBB+=b.BB; tK+=b.K; tSB+=b.SB;
+    }
+    if (p[y].pitching) {
+      hasPit=true;
+      const pt=p[y].pitching;
+      pG+=pt.G; pW+=pt.W; pL2+=pt.L;
+      const ip=parseFloat(pt.IP); pIP+=ip;
+      pK+=pt.K; pBB+=pt.BB;
+      pER+=parseFloat(pt.ERA)*ip/9;
+    }
+  });
+  if (hasBat) {
+    const avg = tAB>0 ? (tH/tAB).toFixed(3) : ".000";
+    const obp = tAB>0 ? ((tH+tBB)/(tAB+tBB)).toFixed(3) : ".000";
+    bat = {G:tG,AVG:avg,AB:tAB,H:tH,HR:tHR,RBI:tRBI,R:tR,BB:tBB,K:tK,SB:tSB,OBP:obp,SLG:"-",OPS:"-"};
+  }
+  if (hasPit) {
+    const era = pIP>0 ? (pER*9/pIP).toFixed(2) : "0.00";
+    pit = {G:pG,ERA:era,IP:pIP.toFixed(1),W:pW,L:pL2,K:pK,BB:pBB,BAA:"-"};
+  }
+  return {batting:bat,pitching:pit};
+}
+
+function renderStats(batting, pitching) {
+  let html = "";
+  if (batting) {
+    html += `<div class="stat-section-title">타격 기록</div><div class="stat-grid">`;
+    for (const [k,v] of Object.entries(batting)) {
+      html += `<div class="stat-box"><div class="val ${hl(k,v)}">${v}</div><div class="label">${bL[k]||k}</div></div>`;
+    }
+    html += `</div>`;
+  }
+  if (pitching) {
+    html += `<div class="stat-section-title">투수 기록</div><div class="stat-grid">`;
+    for (const [k,v] of Object.entries(pitching)) {
+      html += `<div class="stat-box"><div class="val ${hl(k,v)}">${v}</div><div class="label">${pL[k]||k}</div></div>`;
+    }
+    html += `</div>`;
+  }
+  if (!batting && !pitching) html += `<div class="no-record">해당 시즌 기록이 없습니다.</div>`;
+  return html;
+}
+
+let curPlayer = null, curYear = "2025";
+
+function showPlayer(name, year) {
+  curPlayer = name;
+  curYear = year || "2025";
   document.querySelectorAll('.player-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`[data-name="${name}"]`).classList.add('active');
-  const p = players[name];
-  let html = `<div class="player-header active"><div class="number">${p.number}</div><div class="name">${name}</div></div>`;
-  if (p.batting) {
-    html += `<div class="stat-section-title">타격 기록</div><div class="stat-grid">`;
-    for (const [k,v] of Object.entries(p.batting)) {
-      const cls = getHighlightClass(k, v);
-      html += `<div class="stat-box"><div class="val ${cls}">${v}</div><div class="label">${battingLabels[k]||k}</div></div>`;
-    }
-    html += `</div>`;
-  }
-  if (p.pitching) {
-    html += `<div class="stat-section-title">투수 기록</div><div class="stat-grid">`;
-    for (const [k,v] of Object.entries(p.pitching)) {
-      const cls = getHighlightClass(k, v);
-      html += `<div class="stat-box"><div class="val ${cls}">${v}</div><div class="label">${pitchingLabels[k]||k}</div></div>`;
-    }
-    html += `</div>`;
-  }
-  if (!p.batting && !p.pitching) {
-    html += `<div class="no-record">2025 시즌 기록이 없습니다.</div>`;
+  const p = data[name];
+  const years = Object.keys(p).filter(k => k!=="number");
+  let html = `<div class="player-header"><div class="number">${p.number}</div><div class="name">${name}</div></div>`;
+  html += `<div class="year-tabs">`;
+  years.forEach(y => { html += `<button class="year-tab ${curYear===y?'active':''}" onclick="showPlayer('${name}','${y}')">${y}</button>`; });
+  html += `<button class="year-tab ${curYear==='career'?'active':''}" onclick="showPlayer('${name}','career')">통산</button></div>`;
+  if (curYear === "career") {
+    const c = calcCareer(p);
+    html += c ? renderStats(c.batting, c.pitching) : `<div class="no-record">기록이 없습니다.</div>`;
+  } else if (p[curYear]) {
+    html += renderStats(p[curYear].batting, p[curYear].pitching);
+  } else {
+    html += `<div class="no-record">${curYear} 시즌 기록이 없습니다.</div>`;
   }
   document.getElementById('playerContent').innerHTML = html;
 }
 
-// 선수 버튼 생성
 const nav = document.getElementById('playerNav');
-Object.keys(players).forEach(name => {
+Object.keys(data).forEach(name => {
   const btn = document.createElement('button');
   btn.className = 'player-btn';
   btn.dataset.name = name;
   btn.textContent = name;
-  btn.onclick = () => showPlayer(name);
+  btn.onclick = () => showPlayer(name, curYear);
   nav.appendChild(btn);
 });
 
-// URL 파라미터로 선수 선택
 const params = new URLSearchParams(window.location.search);
 const target = params.get('player');
-if (target && players[target]) {
-  showPlayer(target);
-} else {
-  showPlayer(Object.keys(players)[0]);
-}
+if (target && data[target]) showPlayer(target, "2025");
+else showPlayer(Object.keys(data)[0], "2025");
 
 lucide.createIcons();
 </script>
