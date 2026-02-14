@@ -159,15 +159,29 @@
   .nav-card.finance::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
 
   .nav-icon {
-    font-size: 32px;
-    margin-bottom: 4px;
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .nav-stat-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 6px;
   }
 
   .nav-stat {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 900;
     color: #1a2a3a;
-    margin-bottom: 4px;
+    line-height: 1;
+  }
+
+  .nav-stat-unit {
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
   }
 
   .nav-title {
@@ -315,21 +329,30 @@
   <div class="nav-grid">
     <a href="schedule.html" class="nav-card schedule">
       <div class="nav-icon">📅</div>
-      <div class="nav-stat">18</div>
+      <div class="nav-stat-row">
+        <div class="nav-stat">18</div>
+        <div class="nav-stat-unit">경기</div>
+      </div>
       <div class="nav-title">시즌 일정</div>
       <div class="nav-desc">홈 · 원정 · 인터리그</div>
       <div class="nav-arrow">바로가기 →</div>
     </a>
     <a href="roster.html" class="nav-card roster">
       <div class="nav-icon">👥</div>
-      <div class="nav-stat">15</div>
+      <div class="nav-stat-row">
+        <div class="nav-stat">15</div>
+        <div class="nav-stat-unit">명</div>
+      </div>
       <div class="nav-title">선수 명단</div>
       <div class="nav-desc">스태프 4명 + 선수 11명</div>
       <div class="nav-arrow">바로가기 →</div>
     </a>
     <a href="finance.html" class="nav-card finance">
       <div class="nav-icon">💰</div>
-      <div class="nav-stat">50,000</div>
+      <div class="nav-stat-row">
+        <div class="nav-stat">50,000</div>
+        <div class="nav-stat-unit">원</div>
+      </div>
       <div class="nav-title">회비 내역</div>
       <div class="nav-desc">현재 잔액 · 입출금 관리</div>
       <div class="nav-arrow">바로가기 →</div>
