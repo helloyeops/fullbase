@@ -44,16 +44,24 @@
   }
 
   .home-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 16px;
-    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
     text-decoration: none;
-    transition: opacity 0.2s;
-    opacity: 0.5;
+    color: #64748b;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s;
   }
 
   .home-link:hover {
-    opacity: 1;
+    color: #2563eb;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
 
   .header h1 {
@@ -241,11 +249,12 @@
     .header h1 { font-size: 24px; }
   }
 </style>
+<script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
 <div class="container">
-  <a href="index.html" class="home-link">‹</a>
+  <a href="index.html" class="home-link"><i data-lucide="chevron-left"></i></a>
   <div class="header">
     <h1>2026 회비 내역</h1>
   </div>
@@ -345,5 +354,6 @@
   </div>
 </div>
 
+<script>lucide.createIcons();</script>
 </body>
 </html>
