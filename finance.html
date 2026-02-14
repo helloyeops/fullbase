@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 풀베이스 회비 내역</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f0f4f8;
+    color: #1a2a3a;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* 헤더 */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #f59e0b);
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  .header-icon {
+    font-size: 56px;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #1a2a3a;
+  }
+
+  .header .subtitle {
+    font-size: 15px;
+    color: #6b7b8d;
+    margin-top: 6px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  /* 요약 카드 */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .summary-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  .summary-card.income::before { background: #2563eb; }
+  .summary-card.expense::before { background: #dc2626; }
+  .summary-card.balance::before { background: linear-gradient(90deg, #2563eb, #f59e0b); }
+
+  .summary-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6b7b8d;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .summary-amount {
+    font-size: 26px;
+    font-weight: 900;
+  }
+
+  .summary-card.income .summary-amount { color: #2563eb; }
+  .summary-card.expense .summary-amount { color: #dc2626; }
+  .summary-card.balance .summary-amount { color: #1a2a3a; }
+
+  .summary-sub {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 4px;
+  }
+
+  /* 테이블 */
+  .table-wrap {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    background: #f8fafc;
+    padding: 14px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 1px;
+    text-align: right;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  thead th:first-child,
+  thead th:last-child {
+    text-align: left;
+  }
+
+  tbody tr {
+    transition: background 0.15s ease;
+  }
+
+  tbody tr:hover {
+    background: #f8fafc;
+  }
+
+  tbody tr:not(:last-child) td {
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  tbody td {
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: right;
+    color: #475569;
+  }
+
+  tbody td:first-child {
+    text-align: left;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  tbody td:last-child {
+    text-align: left;
+    color: #64748b;
+  }
+
+  .amount-in {
+    color: #2563eb;
+    font-weight: 700;
+  }
+
+  .amount-out {
+    color: #dc2626;
+    font-weight: 700;
+  }
+
+  .amount-balance {
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .empty {
+    color: #cbd5e1;
+  }
+
+  /* 행 타입 표시 */
+  tbody tr.row-expense {
+    background: rgba(220, 38, 38, 0.02);
+  }
+
+  tbody tr.row-expense:hover {
+    background: rgba(220, 38, 38, 0.05);
+  }
+
+  /* 푸터 */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    color: #94a3b8;
+    font-size: 12px;
+  }
+
+  /* 반응형 */
+  @media (max-width: 640px) {
+    .summary {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .summary-card { padding: 16px; }
+    .summary-amount { font-size: 22px; }
+
+    .table-wrap { overflow-x: auto; }
+
+    table { min-width: 600px; }
+
+    .header h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>2026 회비 내역</h1>
+  </div>
+
+  <div class="summary">
+    <div class="summary-card income">
+      <div class="summary-label">총 입금</div>
+      <div class="summary-amount">600,000</div>
+      <div class="summary-sub">6건</div>
+    </div>
+    <div class="summary-card expense">
+      <div class="summary-label">총 출금</div>
+      <div class="summary-amount">550,000</div>
+      <div class="summary-sub">2건</div>
+    </div>
+    <div class="summary-card balance">
+      <div class="summary-label">현재 잔액</div>
+      <div class="summary-amount">50,000</div>
+      <div class="summary-sub">2026-02-14 기준</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>거래일자</th>
+          <th>입금</th>
+          <th>출금</th>
+          <th>잔액</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026-01-06</td>
+          <td class="amount-in">150,000</td>
+          <td class="empty">—</td>
+          <td class="amount-balance">150,000</td>
+          <td>고선옥 회비</td>
+        </tr>
+        <tr>
+          <td>2026-01-08</td>
+          <td class="amount-in">100,000</td>
+          <td class="empty">—</td>
+          <td class="amount-balance">250,000</td>
+          <td>우탁형 회비(기록)</td>
+        </tr>
+        <tr>
+          <td>2026-01-10</td>
+          <td class="amount-in">100,000</td>
+          <td class="empty">—</td>
+          <td class="amount-balance">350,000</td>
+          <td>이영철 회비(총무)</td>
+        </tr>
+        <tr class="row-expense">
+          <td>2026-01-11</td>
+          <td class="empty">—</td>
+          <td class="amount-out">200,000</td>
+          <td class="amount-balance">150,000</td>
+          <td>리그참가비</td>
+        </tr>
+        <tr>
+          <td>2026-01-21</td>
+          <td class="amount-in">50,000</td>
+          <td class="empty">—</td>
+          <td class="amount-balance">200,000</td>
+          <td>박서진 회비(선출)</td>
+        </tr>
+        <tr>
+          <td>2026-01-30</td>
+          <td class="amount-in">50,000</td>
+          <td class="empty">—</td>
+          <td class="amount-balance">250,000</td>
+          <td>공민호 회비(선출)</td>
+        </tr>
+        <tr>
+          <td>2026-02-14</td>
+          <td class="amount-in">150,000</td>
+          <td class="empty">—</td>
+          <td class="amount-balance">400,000</td>
+          <td>고덕한 회비</td>
+        </tr>
+        <tr class="row-expense">
+          <td>2026-02-14</td>
+          <td class="empty">—</td>
+          <td class="amount-out">350,000</td>
+          <td class="amount-balance">50,000</td>
+          <td>협회비</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    💰 풀베이스 2026 회비 관리 — 투명한 회계로 함께하는 야구
+  </div>
+</div>
+
+</body>
+</html>

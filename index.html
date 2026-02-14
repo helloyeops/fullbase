@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚾ 풀베이스 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f0f4f8;
+    color: #1a2a3a;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* 히어로 */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 48px;
+    margin-bottom: 48px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #2563eb, #f59e0b);
+  }
+
+  .hero-icon {
+    font-size: 72px;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: #1a2a3a;
+    margin-bottom: 8px;
+  }
+
+  .hero .tagline {
+    font-size: 16px;
+    color: #6b7b8d;
+    font-weight: 500;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+  }
+
+  .hero .season-badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 6px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 20px;
+    letter-spacing: 2px;
+  }
+
+  /* 퀵 스탯 */
+  .quick-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .quick-stat {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .quick-stat-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .quick-stat-number {
+    font-size: 26px;
+    font-weight: 900;
+    color: #1a2a3a;
+  }
+
+  .quick-stat-label {
+    font-size: 11px;
+    color: #6b7b8d;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+
+  /* 네비게이션 카드 */
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .nav-card {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 36px 24px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .nav-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transition: height 0.3s ease;
+  }
+
+  .nav-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+  }
+
+  .nav-card:hover::before {
+    height: 6px;
+  }
+
+  .nav-card.schedule::before { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+  .nav-card.roster::before { background: linear-gradient(90deg, #059669, #10b981); }
+  .nav-card.finance::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
+
+  .nav-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .nav-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: #1e293b;
+    margin-bottom: 8px;
+  }
+
+  .nav-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  .nav-arrow {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-card.schedule .nav-arrow { color: #2563eb; }
+  .nav-card.roster .nav-arrow { color: #059669; }
+  .nav-card.finance .nav-arrow { color: #d97706; }
+
+  .nav-card:hover .nav-arrow {
+    transform: translateX(4px);
+  }
+
+  /* 다음 경기 */
+  .next-game {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+
+  .next-game::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #dc2626, #f59e0b);
+  }
+
+  .next-game-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #dc2626;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+
+  .next-game-date {
+    font-size: 28px;
+    font-weight: 900;
+    color: #1a2a3a;
+    margin-bottom: 4px;
+  }
+
+  .next-game-info {
+    font-size: 15px;
+    color: #64748b;
+    margin-bottom: 12px;
+  }
+
+  .next-game-vs {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 22px;
+    font-weight: 900;
+    color: #1e293b;
+  }
+
+  .vs-badge {
+    font-size: 13px;
+    font-weight: 700;
+    color: #94a3b8;
+    padding: 2px 12px;
+    background: #f1f5f9;
+    border-radius: 8px;
+  }
+
+  .opening-tag {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 20px;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 4px rgba(220, 38, 38, 0.15); }
+    50% { box-shadow: 0 0 12px rgba(220, 38, 38, 0.3); }
+  }
+
+  /* 푸터 */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    color: #94a3b8;
+    font-size: 12px;
+  }
+
+  /* 반응형 */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 30px; }
+    .quick-stats { grid-template-columns: repeat(2, 1fr); }
+    .nav-grid { grid-template-columns: 1fr; }
+    .nav-card { padding: 28px 20px; }
+    .next-game-date { font-size: 22px; }
+    .next-game-vs { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-icon">⚾</div>
+    <h1>풀베이스</h1>
+    <div class="tagline">Full Base Baseball Club</div>
+    <div class="season-badge">2026 SEASON</div>
+  </div>
+
+  <div class="quick-stats">
+    <div class="quick-stat">
+      <div class="quick-stat-icon">📅</div>
+      <div class="quick-stat-number">18</div>
+      <div class="quick-stat-label">총 경기</div>
+    </div>
+    <div class="quick-stat">
+      <div class="quick-stat-icon">👥</div>
+      <div class="quick-stat-number">15</div>
+      <div class="quick-stat-label">로스터</div>
+    </div>
+    <div class="quick-stat">
+      <div class="quick-stat-icon">💰</div>
+      <div class="quick-stat-number">50,000</div>
+      <div class="quick-stat-label">잔액</div>
+    </div>
+  </div>
+
+  <div class="next-game">
+    <div class="next-game-label">🔥 NEXT GAME — 개막전</div>
+    <div class="next-game-date">3월 8일</div>
+    <div class="next-game-info">📍 회룡중 (AWAY)</div>
+    <div class="next-game-vs">
+      풀베이스
+      <span class="vs-badge">VS</span>
+      임팩트
+    </div>
+    <div class="opening-tag">🔥 2026 시즌 개막전</div>
+  </div>
+
+  <div class="nav-grid">
+    <a href="schedule.html" class="nav-card schedule">
+      <div class="nav-icon">📅</div>
+      <div class="nav-title">시즌 일정</div>
+      <div class="nav-desc">2026 시즌 전체 경기 일정<br>홈 · 원정 · 인터리그</div>
+      <div class="nav-arrow">바로가기 →</div>
+    </a>
+    <a href="roster.html" class="nav-card roster">
+      <div class="nav-icon">👥</div>
+      <div class="nav-title">선수 명단</div>
+      <div class="nav-desc">스태프 4명 + 선수 11명<br>등번호 · 역할 정보</div>
+      <div class="nav-arrow">바로가기 →</div>
+    </a>
+    <a href="finance.html" class="nav-card finance">
+      <div class="nav-icon">💰</div>
+      <div class="nav-title">회비 내역</div>
+      <div class="nav-desc">입출금 내역 · 잔액 현황<br>투명한 회계 관리</div>
+      <div class="nav-arrow">바로가기 →</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    ⚾ 풀베이스 2026 시즌 — 함께 뛰는 15명의 야구인
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚾ 풀베이스 2026 시즌 일정표</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f0f4f8;
+    color: #1a2a3a;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* 헤더 */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #f59e0b);
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  .team-logo {
+    font-size: 56px;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #1a2a3a;
+  }
+
+  .header .season {
+    font-size: 15px;
+    color: #6b7b8d;
+    margin-top: 6px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  /* 월별 그룹 */
+  .month-group {
+    margin-bottom: 36px;
+  }
+
+  .month-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d97706;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
+
+  .month-label::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 16px;
+    background: #d97706;
+    border-radius: 2px;
+  }
+
+  /* 카드 */
+  .game-card {
+    display: grid;
+    grid-template-columns: 90px 1fr 1fr 140px;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 18px 24px;
+    margin-bottom: 10px;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .game-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 14px 0 0 14px;
+  }
+
+  .game-card.home {
+    background: rgba(37, 99, 235, 0.04);
+  }
+
+  .game-card.away {
+    background: rgba(220, 38, 38, 0.04);
+  }
+
+  .game-card.special {
+    background: rgba(245, 158, 11, 0.04);
+  }
+
+  .game-card.home::before { background: #2563eb; }
+  .game-card.away::before { background: #dc2626; }
+  .game-card.tbd::before { background: #94a3b8; }
+  .game-card.special::before { background: linear-gradient(180deg, #f59e0b, #dc2626); }
+
+  .game-card:hover {
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .game-date {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a2a3a;
+  }
+
+  .game-venue {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .venue-icon {
+    font-size: 14px;
+    opacity: 0.7;
+  }
+
+  .game-opponent {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .game-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    justify-self: end;
+  }
+
+  .badge-home {
+    background: rgba(37, 99, 235, 0.08);
+    color: #2563eb;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+  }
+
+  .badge-away {
+    background: rgba(220, 38, 38, 0.08);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .badge-tbd {
+    background: rgba(148, 163, 184, 0.1);
+    color: #64748b;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+  }
+
+  .badge-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-self: end;
+  }
+
+  .badge-opening {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(245, 158, 11, 0.1));
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .game-card.opening {
+    border-color: rgba(220, 38, 38, 0.2);
+    background: linear-gradient(135deg, #fffbeb, #fff1f2, #ffffff);
+  }
+
+  .game-card.opening::before {
+    background: linear-gradient(180deg, #dc2626, #f59e0b);
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 4px rgba(220, 38, 38, 0.15); }
+    50% { box-shadow: 0 0 12px rgba(220, 38, 38, 0.3); }
+  }
+
+  .badge-special {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(220, 38, 38, 0.08));
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  /* 통계 바 */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 28px;
+    font-weight: 900;
+    color: #1a2a3a;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: #6b7b8d;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* 범례 */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #6b7b8d;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .legend-dot.home { background: #2563eb; }
+  .legend-dot.away { background: #dc2626; }
+  .legend-dot.tbd { background: #94a3b8; }
+  .legend-dot.special { background: linear-gradient(135deg, #f59e0b, #dc2626); }
+
+  /* 푸터 */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    color: #94a3b8;
+    font-size: 12px;
+  }
+
+  /* 반응형 */
+  @media (max-width: 640px) {
+    .game-card {
+      grid-template-columns: 70px 1fr;
+      gap: 6px 16px;
+      padding: 14px 18px;
+    }
+
+    .game-date { grid-row: 1 / 3; }
+    .game-venue { font-size: 13px; }
+    .game-opponent { font-size: 14px; }
+    .game-badge { justify-self: start; }
+
+    .header h1 { font-size: 24px; }
+    .stats-bar { gap: 20px; }
+    .stat-number { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>2026 시즌 일정표</h1>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number">18</div>
+      <div class="stat-label">총 경기</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">10</div>
+      <div class="stat-label">홈 경기</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">6</div>
+      <div class="stat-label">원정 경기</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">2</div>
+      <div class="stat-label">인터리그</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot home"></div>홈</div>
+    <div class="legend-item"><div class="legend-dot away"></div>원정</div>
+    <div class="legend-item"><div class="legend-dot tbd"></div>미정</div>
+    <div class="legend-item"><div class="legend-dot special"></div>인터리그</div>
+  </div>
+
+  <!-- 3월 -->
+  <div class="month-group">
+    <div class="month-label">3월</div>
+
+    <div class="game-card away opening">
+      <div class="game-date">3/8</div>
+      <div class="game-venue"><span class="venue-icon">📍</span>회룡중</div>
+      <div class="game-opponent">임팩트</div>
+      <div class="badge-group">
+        <span class="game-badge badge-opening">🔥 개막전</span>
+        <span class="game-badge badge-away">AWAY</span>
+      </div>
+    </div>
+
+    <div class="game-card home">
+      <div class="game-date">3/15</div>
+      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
+      <div class="game-opponent">DNA</div>
+      <span class="game-badge badge-home">HOME</span>
+    </div>
+
+    <div class="game-card home">
+      <div class="game-date">3/29</div>
+      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
+      <div class="game-opponent">서연베스트</div>
+      <span class="game-badge badge-home">HOME</span>
+    </div>
+  </div>
+
+  <!-- 4월 -->
+  <div class="month-group">
+    <div class="month-label">4월</div>
+
+    <div class="game-card home">
+      <div class="game-date">4/5</div>
+      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
+      <div class="game-opponent">도깨비</div>
+      <span class="game-badge badge-home">HOME</span>
+    </div>
+
+    <div class="game-card away">
+      <div class="game-date">4/19</div>
+      <div class="game-venue"><span class="venue-icon">📍</span>양원초</div>
+      <div class="game-opponent">썸타임즈</div>
+      <span class="game-badge badge-away">AWAY</span>
+    </div>
+
+    <div class="game-card away">
+      <div class="game-date">4/26</div>
+      <div class="game-venue"><span class="venue-icon">📍</span>양원초</div>
+      <div class="game-opponent">타이푼</div>
+      <span class="game-badge badge-away">AWAY</span>
+    </div>
+  </div>
+
+  <!-- 5월 -->
+  <div class="month-group">
+    <div class="month-label">5월</div>
+
+    <div class="game-card away">
+      <div class="game-date">5/10</div>
+      <div class="game-venue"><span class="venue-icon">📍</span>사우고</div>
+      <div class="game-opponent">어셈블</div>
+      <span class="game-badge badge-away">AWAY</span>
+    </div>
+
+    <div class="game-card special">
+      <div class="game-date">5/17</div>
+      <div class="game-venue"><span class="venue-icon">🏆</span>미정</div>
+      <div class="game-opponent">인터리그1: 순위전</div>
+      <span class="game-badge badge-special">인터리그</span>
+    </div>
+
+    <div class="game-card special">
+      <div class="game-date">5/31</div>
+      <div class="game-venue"><span class="venue-icon">🏆</span>미정</div>
+      <div class="game-opponent">인터리그2: 지명전</div>
+      <span class="game-badge badge-special">인터리그</span>
+    </div>
+  </div>
+
+  <!-- 6월 -->
+  <div class="month-group">
+    <div class="month-label">6월</div>
+
+    <div class="game-card home">
+      <div class="game-date">6/14</div>
+      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
+      <div class="game-opponent">임팩트</div>
+      <span class="game-badge badge-home">HOME</span>
+    </div>
+
+    <div class="game-card away">
+      <div class="game-date">6/21</div>
+      <div class="game-venue"><span class="venue-icon">📍</span>덕산고</div>
+      <div class="game-opponent">DNA</div>
+      <span class="game-badge badge-away">AWAY</span>
+    </div>
+  </div>
+
+  <!-- 7월 -->
+  <div class="month-group">
+    <div class="month-label">7월</div>
+
+    <div class="game-card away">
+      <div class="game-date">7/5</div>
+      <div class="game-venue"><span class="venue-icon">📍</span>덕산고</div>
+      <div class="game-opponent">서연베스트</div>
+      <span class="game-badge badge-away">AWAY</span>
+    </div>
+
+    <div class="game-card away">
+      <div class="game-date">7/12</div>
+      <div class="game-venue"><span class="venue-icon">📍</span>사우고</div>
+      <div class="game-opponent">도깨비</div>
+      <span class="game-badge badge-away">AWAY</span>
+    </div>
+  </div>
+
+  <!-- 8월 -->
+  <div class="month-group">
+    <div class="month-label">8월</div>
+
+    <div class="game-card home">
+      <div class="game-date">8/30</div>
+      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
+      <div class="game-opponent">썸타임즈</div>
+      <span class="game-badge badge-home">HOME</span>
+    </div>
+  </div>
+
+  <!-- 9월 -->
+  <div class="month-group">
+    <div class="month-label">9월</div>
+
+    <div class="game-card home">
+      <div class="game-date">9/6</div>
+      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
+      <div class="game-opponent">타이푼</div>
+      <span class="game-badge badge-home">HOME</span>
+    </div>
+
+    <div class="game-card home">
+      <div class="game-date">9/13</div>
+      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
+      <div class="game-opponent">어셈블</div>
+      <span class="game-badge badge-home">HOME</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    ⚾ 풀베이스 2026 시즌 — 모든 경기 일요일 진행
+  </div>
+</div>
+
+</body>
+</html>

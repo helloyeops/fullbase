@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚾ 풀베이스 2026 로스터</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f0f4f8;
+    color: #1a2a3a;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* 헤더 */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #f59e0b);
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  .header-icon {
+    font-size: 56px;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #1a2a3a;
+  }
+
+  .header .subtitle {
+    font-size: 15px;
+    color: #6b7b8d;
+    margin-top: 6px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  /* 통계 */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-number {
+    font-size: 28px;
+    font-weight: 900;
+    color: #1a2a3a;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: #6b7b8d;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* 스태프 섹션 */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d97706;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    padding-left: 4px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 16px;
+    background: #d97706;
+    border-radius: 2px;
+  }
+
+  /* 스태프 카드 */
+  .staff-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .staff-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+
+  .staff-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #f59e0b);
+  }
+
+  .staff-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .staff-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 28px;
+  }
+
+  .staff-card.owner .staff-avatar {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+  }
+
+  .staff-card.manager .staff-avatar {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+  }
+
+  .staff-card.recorder .staff-avatar {
+    background: linear-gradient(135deg, #059669, #10b981);
+  }
+
+  .staff-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .staff-name {
+    font-size: 17px;
+    font-weight: 900;
+    color: #1e293b;
+    margin-bottom: 6px;
+  }
+
+  .staff-role {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    letter-spacing: 0.5px;
+  }
+
+  .staff-card.owner .staff-role {
+    background: rgba(245, 158, 11, 0.1);
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+  }
+
+  .staff-card.manager .staff-role {
+    background: rgba(220, 38, 38, 0.08);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .staff-card.recorder .staff-role {
+    background: rgba(5, 150, 105, 0.08);
+    color: #059669;
+    border: 1px solid rgba(5, 150, 105, 0.2);
+  }
+
+  .staff-card.treasurer .staff-avatar {
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  }
+
+  .staff-card.treasurer .staff-role {
+    background: rgba(124, 58, 237, 0.08);
+    color: #7c3aed;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+  }
+
+  /* 선수 그리드 */
+  .player-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .player-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+
+  .player-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #2563eb;
+    border-radius: 14px 0 0 14px;
+  }
+
+  .player-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+  }
+
+  .player-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .player-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e2e8f0, #f1f5f9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 24px;
+  }
+
+  .player-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .paid-badge {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(5, 150, 105, 0.08);
+    color: #059669;
+    border: 1px solid rgba(5, 150, 105, 0.2);
+    letter-spacing: 0.5px;
+  }
+
+  /* 푸터 */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    color: #94a3b8;
+    font-size: 12px;
+  }
+
+  /* 반응형 */
+  @media (max-width: 640px) {
+    .staff-grid { grid-template-columns: 1fr; }
+    .player-grid { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 24px; }
+    .stats-bar { gap: 20px; }
+    .stat-number { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>2026 선수 명단</h1>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number">15</div>
+      <div class="stat-label">총 인원</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">4</div>
+      <div class="stat-label">스태프</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">11</div>
+      <div class="stat-label">선수</div>
+    </div>
+  </div>
+
+  <!-- 스태프 -->
+  <div class="section-label">스태프</div>
+
+  <div class="staff-grid">
+    <div class="staff-card owner">
+      <div class="staff-avatar">👔</div>
+      <div class="staff-number">#20</div>
+      <div class="staff-name">최철진</div>
+      <span class="staff-role">단장</span>
+    </div>
+    <div class="staff-card manager">
+      <div class="staff-avatar">🧢</div>
+      <div class="staff-number">#10</div>
+      <div class="staff-name">신승엽</div>
+      <span class="staff-role">감독</span>
+      <span class="paid-badge">✅ 회비 면제</span>
+    </div>
+    <div class="staff-card recorder">
+      <div class="staff-avatar">📋</div>
+      <div class="staff-number">#1</div>
+      <div class="staff-name">우탁형</div>
+      <span class="staff-role">기록</span>
+      <span class="paid-badge">✅ 회비 납부</span>
+    </div>
+    <div class="staff-card treasurer">
+      <div class="staff-avatar">💼</div>
+      <div class="staff-number">#14</div>
+      <div class="staff-name">이영철</div>
+      <span class="staff-role">총무</span>
+      <span class="paid-badge">✅ 회비 납부</span>
+    </div>
+  </div>
+
+  <!-- 선수 -->
+  <div class="section-label">선수</div>
+
+  <div class="player-grid">
+    <div class="player-card">
+      <div class="player-number">#0</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">공민호</div>
+      <span class="paid-badge">✅ 회비 납부</span>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#5</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">조재성</div>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#18</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">황재원</div>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#23</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">심민성</div>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#27</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">우현동</div>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#31</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">박서진</div>
+      <span class="paid-badge">✅ 회비 납부</span>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#33</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">조상현</div>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#45</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">최대웅</div>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#48</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">조형우</div>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#52</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">고덕한</div>
+      <span class="paid-badge">✅ 회비 납부</span>
+    </div>
+    <div class="player-card">
+      <div class="player-number">#57</div>
+      <div class="player-avatar">⚾</div>
+      <div class="player-name">고선옥</div>
+      <span class="paid-badge">✅ 회비 납부</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    ⚾ 풀베이스 2026 시즌 — 함께 뛰는 15명의 야구인
+  </div>
+</div>
+
+</body>
+</html>
