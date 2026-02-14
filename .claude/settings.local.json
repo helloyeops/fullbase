@@ -4,7 +4,9 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(git -C /Users/sy.shin/Projects/fullbase remote:*)"
+      "Bash(git -C /Users/sy.shin/Projects/fullbase remote:*)",
+      "Bash(python3 -c:*)",
+      "Bash(python3:*)"
     ]
   }
 }
