@@ -290,31 +290,29 @@
   /* 반응형 */
   @media (max-width: 640px) {
     .game-card {
-      grid-template-columns: 55px 1fr;
-      gap: 2px 12px;
-      padding: 14px 16px;
+      grid-template-columns: 45px 1fr 1fr 90px;
+      gap: 2px 8px;
+      padding: 12px 14px;
     }
 
-    .game-date {
-      grid-row: 1 / 4;
-      align-self: center;
-      font-size: 14px;
-    }
-
-    .game-venue { font-size: 12px; }
-    .game-opponent { font-size: 13px; }
+    .game-date { font-size: 13px; }
+    .game-venue { font-size: 11px; }
+    .game-opponent { font-size: 12px; }
 
     .game-badge {
-      justify-self: start;
-      font-size: 10px;
-      padding: 3px 8px;
-      margin-top: 2px;
+      justify-self: end;
+      font-size: 9px;
+      padding: 2px 7px;
     }
 
     .badge-group {
-      justify-self: start;
-      gap: 4px;
-      margin-top: 2px;
+      justify-self: end;
+      gap: 3px;
+    }
+
+    .badge-group .game-badge {
+      font-size: 9px;
+      padding: 2px 7px;
     }
 
     .badge-group .game-badge {
