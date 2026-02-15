@@ -15,14 +15,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `index.html` — 메인 페이지. 퀵 스탯, 다음 경기(개막전), 3개 서브페이지 네비게이션 카드
 - `schedule.html` — 시즌 경기 일정. 월별 그룹, 홈/원정/인터리그 색상 구분, 개막전 배지
-- `roster.html` — 선수 명단. 스태프(단장/감독/기록/총무) + 선수 카드, 등번호, 회비 납부 표시
+- `roster.html` — 선수 명단. 스태프(단장/감독/기록/총무) + 선수 카드, 등번호, 회비 납부/불참 표시
 - `finance.html` — 회비 내역. 입출금 테이블, 요약 카드(총 입금/출금/잔액)
 
 ## Design Conventions
 
 - 라이트 테마: 배경 `#f0f4f8`, 카드 `#ffffff`, 테두리 `#e2e8f0`
 - 폰트: Noto Sans KR (Google Fonts import)
-- 색상 체계: 홈 파란색(`#2563eb`), 원정 빨간색(`#dc2626`), 인터리그 골드(`#d97706`/`#f59e0b`), 총무 보라색(`#7c3aed`)
+- 색상 체계: 홈 파란색(`#2563eb`), 원정 빨간색(`#dc2626`), 인터리그 골드(`#d97706`/`#f59e0b`), 총무 보라색(`#7c3aed`), 불참 회색(`#6b7280`/`#9ca3af`)
+- 불참 선수 카드: `.player-card.inactive` 클래스 — 회색 배경(`#f8fafc`), 회색 왼쪽 바(`#9ca3af`), ❌ 아이콘
 - 모든 서브페이지 상단에 🏠 홈 아이콘 링크
 - 반응형: `@media (max-width: 640px)` 브레이크포인트
 
