@@ -322,9 +322,32 @@
   }
 
   .paid-badge.unpaid-badge {
-    background: rgba(220, 38, 38, 0.08);
-    color: #dc2626;
-    border: 1px solid rgba(220, 38, 38, 0.2);
+    background: rgba(107, 114, 128, 0.1);
+    color: #6b7280;
+    border: 1px solid rgba(107, 114, 128, 0.25);
+  }
+
+  /* 불참 선수 카드 스타일 */
+  .player-card.inactive {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+  }
+
+  .player-card.inactive::before {
+    background: #9ca3af;
+  }
+
+  .player-card.inactive .player-avatar {
+    background: linear-gradient(135deg, #d1d5db, #e5e7eb);
+    opacity: 0.7;
+  }
+
+  .player-card.inactive .player-name {
+    color: #6b7280;
+  }
+
+  .player-card.inactive .player-number {
+    color: #9ca3af;
   }
 
   /* 푸터 */
@@ -414,17 +437,17 @@
       <div class="player-name">공민호</div>
       <span class="paid-badge">✅ 회비 납부</span>
     </a>
-    <a href="stats.html?player=이호석" class="player-card">
+    <a href="stats.html?player=이호석" class="player-card inactive">
       <div class="player-number">#3</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">이호석</div>
-      <span class="paid-badge unpaid-badge">✅ 2026 불참</span>
+      <span class="paid-badge unpaid-badge">❌ 2026 불참</span>
     </a>
-    <a href="stats.html?player=박문수" class="player-card">
+    <a href="stats.html?player=박문수" class="player-card inactive">
       <div class="player-number">#13</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">박문수</div>
-      <span class="paid-badge unpaid-badge">✅ 2026 불참</span>
+      <span class="paid-badge unpaid-badge">❌ 2026 불참</span>
     </a>
     <a href="stats.html?player=조재성" class="player-card">
       <div class="player-number">#5</div>
@@ -495,17 +518,17 @@
       <div class="player-avatar">⚾</div>
       <div class="player-name">김진엽</div>
     </a>
-    <a href="stats.html?player=심재곤" class="player-card">
+    <a href="stats.html?player=심재곤" class="player-card inactive">
       <div class="player-number">#100</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">심재곤</div>
-      <span class="paid-badge unpaid-badge">✅ 2026 불참</span>
+      <span class="paid-badge unpaid-badge">❌ 2026 불참</span>
     </a>
-    <a href="stats.html?player=최은일" class="player-card">
+    <a href="stats.html?player=최은일" class="player-card inactive">
       <div class="player-number">#119</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">최은일</div>
-      <span class="paid-badge unpaid-badge">✅ 2026 불참</span>
+      <span class="paid-badge unpaid-badge">❌ 2026 불참</span>
     </a>
   </div>
 
