@@ -26,6 +26,7 @@
   .header {
     text-align: center;
     margin-bottom: 48px;
+    position: relative;
   }
 
   .header::after {
@@ -44,10 +45,12 @@
   }
 
   .home-link {
+    position: absolute;
+    left: 0;
+    top: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
     width: 36px;
     height: 36px;
     border-radius: 10px;
@@ -254,8 +257,8 @@
 <body>
 
 <div class="container">
-  <a href="index.html" class="home-link"><i data-lucide="chevron-left"></i></a>
   <div class="header">
+    <a href="index.html" class="home-link"><i data-lucide="chevron-left"></i></a>
     <h1>2026 회비 내역</h1>
   </div>
 

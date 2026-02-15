@@ -9,9 +9,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #1a2a3a; min-height: 100vh; padding: 40px 20px; }
   .container { max-width: 900px; margin: 0 auto; }
-  .home-link { display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; width: 36px; height: 36px; border-radius: 10px; text-decoration: none; color: #64748b; background: #fff; border: 1px solid #e2e8f0; transition: all 0.2s; }
+  .home-link { position: absolute; left: 0; top: 4px; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; text-decoration: none; color: #64748b; background: #fff; border: 1px solid #e2e8f0; transition: all 0.2s; }
   .home-link:hover { color: #2563eb; border-color: #cbd5e1; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .header { text-align: center; margin-bottom: 36px; }
+  .header { text-align: center; margin-bottom: 36px; position: relative; }
   .header::after { content: ''; display: block; width: 80px; height: 4px; background: linear-gradient(90deg, #2563eb, #f59e0b); margin: 20px auto 0; border-radius: 2px; }
   .header h1 { font-size: 32px; font-weight: 900; color: #1a2a3a; }
   .player-header { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 24px; }
@@ -41,8 +41,10 @@
 </head>
 <body>
 <div class="container">
-  <a href="roster.html" class="home-link"><i data-lucide="chevron-left"></i></a>
-  <div class="header"><h1>시즌 개인 기록</h1></div>
+  <div class="header">
+    <a href="roster.html" class="home-link"><i data-lucide="chevron-left"></i></a>
+    <h1>시즌 개인 기록</h1>
+  </div>
   <div class="player-nav" id="playerNav"></div>
   <div id="playerContent"></div>
   <div class="footer">⚾ 풀베이스 KTBO 리그 개인 기록</div>
