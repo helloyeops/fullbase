@@ -16,6 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `index.html` — 메인 페이지. 퀵 스탯, 다음 경기(개막전), 3개 서브페이지 네비게이션 카드
 - `schedule.html` — 시즌 경기 일정. 월별 그룹, 홈/원정/인터리그 색상 구분, 개막전 배지
 - `roster.html` — 선수 명단. 스태프(단장/감독/기록/총무) + 선수 카드, 등번호, 회비 납부/불참 표시
+- `stats.html` — 개인 기록. 선수별 타격/투수 스탯, 연도별 탭 전환, 커리어 통산
 - `finance.html` — 회비 내역. 입출금 테이블, 요약 카드(총 입금/출금/잔액)
 
 ## Design Conventions
