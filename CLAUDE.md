@@ -37,8 +37,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Deployment
 
-GitHub Pages (main 브랜치, root). push하면 자동 배포된다. 변경사항이 있으면 항상 즉시 배포한다.
+GitHub Pages (main 브랜치, root). push하면 자동 배포된다. 변경사항이 있으면 항상 즉시 배포한다. 사용자가 별도로 요청하지 않아도 수정 완료 후 자동으로 커밋 및 푸시한다.
 
-```
+```bash
 git add . && git commit -m "메시지" && git push
 ```
