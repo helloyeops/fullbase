@@ -27,6 +27,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 모든 서브페이지 상단에 🏠 홈 아이콘 링크
 - 반응형: `@media (max-width: 640px)` 브레이크포인트
 
+## Personal Records (개인 기록)
+
+기록 페이지 작성 시 참조하는 기록 데이터 이미지:
+
+- 2025: `https://t1.daumcdn.net/cafeattach/lCVf/92acdb606898db9267455e47e2037607f73b0fd6`
+- 2024: `https://t1.daumcdn.net/cafeattach/lCVf/49a3b2723e7580a8369a90e63f0aa07dc7c8b1fe`
+
 ## Deployment
 
 GitHub Pages (main 브랜치, root). push하면 자동 배포된다. 변경사항이 있으면 항상 즉시 배포한다.
