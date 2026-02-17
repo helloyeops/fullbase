@@ -219,7 +219,7 @@ function showPlayer(name, year) {
 }
 
 const nav = document.getElementById('playerNav');
-Object.keys(data).forEach(name => {
+Object.keys(data).sort().forEach(name => {
   const btn = document.createElement('button');
   btn.className = 'player-btn';
   btn.dataset.name = name;
