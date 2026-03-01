@@ -245,6 +245,38 @@
     border: 1px solid rgba(245, 158, 11, 0.3);
   }
 
+  /* 다음 경기 하이라이트 */
+  .game-card.next-game {
+    border: 2px solid #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1), 0 8px 24px rgba(37, 99, 235, 0.15);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(37, 99, 235, 0.02));
+  }
+
+  .game-card.next-game::before {
+    width: 6px;
+  }
+
+  .game-card.next-game .game-date {
+    color: #2563eb;
+    font-size: 16px;
+  }
+
+  .game-card.next-game .game-opponent {
+    font-size: 16px;
+  }
+
+  .badge-next {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    animation: pulse-glow-next 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow-next {
+    0%, 100% { box-shadow: 0 0 4px rgba(37, 99, 235, 0.3); }
+    50% { box-shadow: 0 0 14px rgba(37, 99, 235, 0.5); }
+  }
+
   /* 경기 결과 */
   .game-card.finished {
     grid-template-columns: 90px 1fr 1fr 140px;
@@ -437,6 +469,13 @@
     .game-pitchers { font-size: 10px; gap: 6px; }
     .game-num { font-size: 9px; padding: 1px 6px; }
 
+    .game-card.next-game {
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08), 0 6px 16px rgba(37, 99, 235, 0.12);
+    }
+
+    .game-card.next-game .game-date { font-size: 14px; }
+    .game-card.next-game .game-opponent { font-size: 13px; }
+
     .header h1 { font-size: 24px; }
     .stats-bar { gap: 16px; }
     .stat-number { font-size: 20px; }
@@ -481,43 +520,14 @@
   <div class="month-group">
     <div class="month-label">3월</div>
 
-    <div class="game-card away opening finished">
+    <div class="game-card away opening next-game">
       <div class="game-date">3/8</div>
       <div class="game-venue"><span class="venue-icon">📍</span>회룡중</div>
       <div class="game-opponent">임팩트</div>
       <div class="badge-group">
+        <span class="game-badge badge-next">⚡ 다음 경기</span>
         <span class="game-badge badge-opening">🔥 개막전</span>
         <span class="game-badge badge-away">AWAY</span>
-      </div>
-      <div class="game-results">
-        <div class="game-result-row">
-          <span class="game-num">1경기</span>
-          <div class="game-score">
-            <span class="score-team">풀베이스</span>
-            <span class="score-num">0</span>
-            <span class="score-divider">:</span>
-            <span class="score-num">0</span>
-            <span class="score-team">임팩트</span>
-          </div>
-          <div class="game-pitchers">
-            <span class="pitcher-win">승 —</span>
-            <span class="pitcher-lose">패 —</span>
-          </div>
-        </div>
-        <div class="game-result-row">
-          <span class="game-num">2경기</span>
-          <div class="game-score">
-            <span class="score-team">풀베이스</span>
-            <span class="score-num">0</span>
-            <span class="score-divider">:</span>
-            <span class="score-num">0</span>
-            <span class="score-team">임팩트</span>
-          </div>
-          <div class="game-pitchers">
-            <span class="pitcher-win">승 —</span>
-            <span class="pitcher-lose">패 —</span>
-          </div>
-        </div>
       </div>
     </div>
 
