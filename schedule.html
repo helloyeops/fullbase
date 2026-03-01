@@ -249,32 +249,28 @@
   .game-card.next-game {
     border: 2px solid #2563eb;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1), 0 8px 24px rgba(37, 99, 235, 0.15);
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(37, 99, 235, 0.02));
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.03));
+    animation: next-game-pulse 3s ease-in-out infinite;
   }
 
   .game-card.next-game::before {
     width: 6px;
+    background: #2563eb;
   }
 
   .game-card.next-game .game-date {
     color: #2563eb;
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .game-card.next-game .game-opponent {
-    font-size: 16px;
+    font-size: 17px;
+    color: #2563eb;
   }
 
-  .badge-next {
-    background: #2563eb;
-    color: #ffffff;
-    border: none;
-    animation: pulse-glow-next 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-glow-next {
-    0%, 100% { box-shadow: 0 0 4px rgba(37, 99, 235, 0.3); }
-    50% { box-shadow: 0 0 14px rgba(37, 99, 235, 0.5); }
+  @keyframes next-game-pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1), 0 8px 24px rgba(37, 99, 235, 0.15); }
+    50% { box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.15), 0 12px 32px rgba(37, 99, 235, 0.25); }
   }
 
   /* 경기 결과 */
@@ -296,6 +292,7 @@
   .game-result-row {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding: 6px 0;
   }
@@ -348,7 +345,6 @@
     font-size: 11px;
     font-weight: 600;
     color: #64748b;
-    margin-left: auto;
   }
 
   .pitcher-win {
@@ -520,14 +516,43 @@
   <div class="month-group">
     <div class="month-label">3월</div>
 
-    <div class="game-card away opening next-game">
+    <div class="game-card away opening next-game finished">
       <div class="game-date">3/8</div>
       <div class="game-venue"><span class="venue-icon">📍</span>회룡중</div>
       <div class="game-opponent">임팩트</div>
       <div class="badge-group">
-        <span class="game-badge badge-next">⚡ 다음 경기</span>
         <span class="game-badge badge-opening">🔥 개막전</span>
         <span class="game-badge badge-away">AWAY</span>
+      </div>
+      <div class="game-results">
+        <div class="game-result-row">
+          <span class="game-num">1경기</span>
+          <div class="game-score">
+            <span class="score-team">풀베이스</span>
+            <span class="score-num">0</span>
+            <span class="score-divider">:</span>
+            <span class="score-num">0</span>
+            <span class="score-team">임팩트</span>
+          </div>
+          <div class="game-pitchers">
+            <span class="pitcher-win">승 —</span>
+            <span class="pitcher-lose">패 —</span>
+          </div>
+        </div>
+        <div class="game-result-row">
+          <span class="game-num">2경기</span>
+          <div class="game-score">
+            <span class="score-team">풀베이스</span>
+            <span class="score-num">0</span>
+            <span class="score-divider">:</span>
+            <span class="score-num">0</span>
+            <span class="score-team">임팩트</span>
+          </div>
+          <div class="game-pitchers">
+            <span class="pitcher-win">승 —</span>
+            <span class="pitcher-lose">패 —</span>
+          </div>
+        </div>
       </div>
     </div>
 
