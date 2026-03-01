@@ -247,30 +247,49 @@
 
   /* 다음 경기 하이라이트 */
   .game-card.next-game {
-    border: 2px solid #2563eb;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1), 0 8px 24px rgba(37, 99, 235, 0.15);
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.03));
+    border-width: 2px;
     animation: next-game-pulse 3s ease-in-out infinite;
   }
 
   .game-card.next-game::before {
     width: 6px;
-    background: #2563eb;
   }
 
   .game-card.next-game .game-date {
-    color: #2563eb;
     font-size: 17px;
   }
 
   .game-card.next-game .game-opponent {
     font-size: 17px;
+  }
+
+  /* 홈 다음 경기 */
+  .game-card.home.next-game {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1), 0 8px 24px rgba(37, 99, 235, 0.15);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.03));
+  }
+
+  .game-card.home.next-game .game-date,
+  .game-card.home.next-game .game-opponent {
     color: #2563eb;
   }
 
+  /* 원정 다음 경기 */
+  .game-card.away.next-game {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1), 0 8px 24px rgba(220, 38, 38, 0.15);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(220, 38, 38, 0.03));
+  }
+
+  .game-card.away.next-game .game-date,
+  .game-card.away.next-game .game-opponent {
+    color: #dc2626;
+  }
+
   @keyframes next-game-pulse {
-    0%, 100% { box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1), 0 8px 24px rgba(37, 99, 235, 0.15); }
-    50% { box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.15), 0 12px 32px rgba(37, 99, 235, 0.25); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
   }
 
   /* 경기 결과 */
@@ -465,8 +484,12 @@
     .game-pitchers { font-size: 10px; gap: 6px; }
     .game-num { font-size: 9px; padding: 1px 6px; }
 
-    .game-card.next-game {
+    .game-card.home.next-game {
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08), 0 6px 16px rgba(37, 99, 235, 0.12);
+    }
+
+    .game-card.away.next-game {
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08), 0 6px 16px rgba(220, 38, 38, 0.12);
     }
 
     .game-card.next-game .game-date { font-size: 14px; }
