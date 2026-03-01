@@ -251,22 +251,43 @@
     grid-template-rows: auto auto;
   }
 
-  .game-result-row {
+  .game-results {
     grid-column: 1 / -1;
     display: flex;
-    align-items: center;
-    gap: 16px;
-    padding-top: 12px;
-    margin-top: 12px;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 10px;
+    margin-top: 10px;
     border-top: 1px dashed #e2e8f0;
+  }
+
+  .game-result-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+  }
+
+  .game-result-row + .game-result-row {
+    border-top: 1px dotted #f1f5f9;
+  }
+
+  .game-num {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .game-score {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 900;
+    gap: 6px;
   }
 
   .score-team {
@@ -279,7 +300,7 @@
     font-size: 14px;
     font-weight: 900;
     color: #1e293b;
-    min-width: 16px;
+    min-width: 14px;
     text-align: center;
   }
 
@@ -289,21 +310,10 @@
     font-weight: 700;
   }
 
-  .game-num {
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 10px;
-    background: #f1f5f9;
-    color: #64748b;
-    border: 1px solid #e2e8f0;
-    white-space: nowrap;
-  }
-
   .game-pitchers {
     display: flex;
-    gap: 12px;
-    font-size: 12px;
+    gap: 10px;
+    font-size: 11px;
     font-weight: 600;
     color: #64748b;
     margin-left: auto;
@@ -418,7 +428,7 @@
     }
 
     .game-result-row {
-      gap: 10px;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
@@ -474,45 +484,39 @@
     <div class="game-card away opening finished">
       <div class="game-date">3/8</div>
       <div class="game-venue"><span class="venue-icon">📍</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 임팩트</div>
+      <div class="game-opponent">임팩트</div>
       <div class="badge-group">
         <span class="game-badge badge-opening">🔥 개막전</span>
         <span class="game-badge badge-away">AWAY</span>
       </div>
-      <div class="game-result-row">
-        <div class="game-score">
-          <span class="score-team">풀베이스</span>
-          <span class="score-num">0</span>
-          <span class="score-divider">:</span>
-          <span class="score-num">0</span>
-          <span class="score-team">임팩트</span>
+      <div class="game-results">
+        <div class="game-result-row">
+          <span class="game-num">1경기</span>
+          <div class="game-score">
+            <span class="score-team">풀베이스</span>
+            <span class="score-num">0</span>
+            <span class="score-divider">:</span>
+            <span class="score-num">0</span>
+            <span class="score-team">임팩트</span>
+          </div>
+          <div class="game-pitchers">
+            <span class="pitcher-win">승 —</span>
+            <span class="pitcher-lose">패 —</span>
+          </div>
         </div>
-        <div class="game-pitchers">
-          <span class="pitcher-win">승 —</span>
-          <span class="pitcher-lose">패 —</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="game-card away opening finished">
-      <div class="game-date">3/8</div>
-      <div class="game-venue"><span class="venue-icon">📍</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 임팩트</div>
-      <div class="badge-group">
-        <span class="game-badge badge-opening">🔥 개막전</span>
-        <span class="game-badge badge-away">AWAY</span>
-      </div>
-      <div class="game-result-row">
-        <div class="game-score">
-          <span class="score-team">풀베이스</span>
-          <span class="score-num">0</span>
-          <span class="score-divider">:</span>
-          <span class="score-num">0</span>
-          <span class="score-team">임팩트</span>
-        </div>
-        <div class="game-pitchers">
-          <span class="pitcher-win">승 —</span>
-          <span class="pitcher-lose">패 —</span>
+        <div class="game-result-row">
+          <span class="game-num">2경기</span>
+          <div class="game-score">
+            <span class="score-team">풀베이스</span>
+            <span class="score-num">0</span>
+            <span class="score-divider">:</span>
+            <span class="score-num">0</span>
+            <span class="score-team">임팩트</span>
+          </div>
+          <div class="game-pitchers">
+            <span class="pitcher-win">승 —</span>
+            <span class="pitcher-lose">패 —</span>
+          </div>
         </div>
       </div>
     </div>
@@ -520,26 +524,14 @@
     <div class="game-card home">
       <div class="game-date">3/15</div>
       <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> DNA</div>
-      <span class="game-badge badge-home">HOME</span>
-    </div>
-    <div class="game-card home">
-      <div class="game-date">3/15</div>
-      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> DNA</div>
+      <div class="game-opponent">DNA</div>
       <span class="game-badge badge-home">HOME</span>
     </div>
 
     <div class="game-card home">
       <div class="game-date">3/29</div>
       <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 서연베스트</div>
-      <span class="game-badge badge-home">HOME</span>
-    </div>
-    <div class="game-card home">
-      <div class="game-date">3/29</div>
-      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 서연베스트</div>
+      <div class="game-opponent">서연베스트</div>
       <span class="game-badge badge-home">HOME</span>
     </div>
   </div>
@@ -551,39 +543,21 @@
     <div class="game-card home">
       <div class="game-date">4/5</div>
       <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 도깨비</div>
-      <span class="game-badge badge-home">HOME</span>
-    </div>
-    <div class="game-card home">
-      <div class="game-date">4/5</div>
-      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 도깨비</div>
+      <div class="game-opponent">도깨비</div>
       <span class="game-badge badge-home">HOME</span>
     </div>
 
     <div class="game-card away">
       <div class="game-date">4/19</div>
       <div class="game-venue"><span class="venue-icon">📍</span>양원초</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 썸타임즈</div>
-      <span class="game-badge badge-away">AWAY</span>
-    </div>
-    <div class="game-card away">
-      <div class="game-date">4/19</div>
-      <div class="game-venue"><span class="venue-icon">📍</span>양원초</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 썸타임즈</div>
+      <div class="game-opponent">썸타임즈</div>
       <span class="game-badge badge-away">AWAY</span>
     </div>
 
     <div class="game-card away">
       <div class="game-date">4/26</div>
       <div class="game-venue"><span class="venue-icon">📍</span>양원초</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 타이푼</div>
-      <span class="game-badge badge-away">AWAY</span>
-    </div>
-    <div class="game-card away">
-      <div class="game-date">4/26</div>
-      <div class="game-venue"><span class="venue-icon">📍</span>양원초</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 타이푼</div>
+      <div class="game-opponent">타이푼</div>
       <span class="game-badge badge-away">AWAY</span>
     </div>
   </div>
@@ -595,39 +569,21 @@
     <div class="game-card away">
       <div class="game-date">5/10</div>
       <div class="game-venue"><span class="venue-icon">📍</span>사우고</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 어셈블</div>
-      <span class="game-badge badge-away">AWAY</span>
-    </div>
-    <div class="game-card away">
-      <div class="game-date">5/10</div>
-      <div class="game-venue"><span class="venue-icon">📍</span>사우고</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 어셈블</div>
+      <div class="game-opponent">어셈블</div>
       <span class="game-badge badge-away">AWAY</span>
     </div>
 
     <div class="game-card special">
       <div class="game-date">5/17</div>
       <div class="game-venue"><span class="venue-icon">🏆</span>미정</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 인터리그: 순위전</div>
-      <span class="game-badge badge-special">인터리그</span>
-    </div>
-    <div class="game-card special">
-      <div class="game-date">5/17</div>
-      <div class="game-venue"><span class="venue-icon">🏆</span>미정</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 인터리그: 순위전</div>
+      <div class="game-opponent">인터리그: 순위전</div>
       <span class="game-badge badge-special">인터리그</span>
     </div>
 
     <div class="game-card special">
       <div class="game-date">5/31</div>
       <div class="game-venue"><span class="venue-icon">🏆</span>미정</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 인터리그: 지명전</div>
-      <span class="game-badge badge-special">인터리그</span>
-    </div>
-    <div class="game-card special">
-      <div class="game-date">5/31</div>
-      <div class="game-venue"><span class="venue-icon">🏆</span>미정</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 인터리그: 지명전</div>
+      <div class="game-opponent">인터리그: 지명전</div>
       <span class="game-badge badge-special">인터리그</span>
     </div>
   </div>
@@ -639,26 +595,14 @@
     <div class="game-card home">
       <div class="game-date">6/14</div>
       <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 임팩트</div>
-      <span class="game-badge badge-home">HOME</span>
-    </div>
-    <div class="game-card home">
-      <div class="game-date">6/14</div>
-      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 임팩트</div>
+      <div class="game-opponent">임팩트</div>
       <span class="game-badge badge-home">HOME</span>
     </div>
 
     <div class="game-card away">
       <div class="game-date">6/21</div>
       <div class="game-venue"><span class="venue-icon">📍</span>덕산고</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> DNA</div>
-      <span class="game-badge badge-away">AWAY</span>
-    </div>
-    <div class="game-card away">
-      <div class="game-date">6/21</div>
-      <div class="game-venue"><span class="venue-icon">📍</span>덕산고</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> DNA</div>
+      <div class="game-opponent">DNA</div>
       <span class="game-badge badge-away">AWAY</span>
     </div>
   </div>
@@ -670,26 +614,14 @@
     <div class="game-card away">
       <div class="game-date">7/5</div>
       <div class="game-venue"><span class="venue-icon">📍</span>덕산고</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 서연베스트</div>
-      <span class="game-badge badge-away">AWAY</span>
-    </div>
-    <div class="game-card away">
-      <div class="game-date">7/5</div>
-      <div class="game-venue"><span class="venue-icon">📍</span>덕산고</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 서연베스트</div>
+      <div class="game-opponent">서연베스트</div>
       <span class="game-badge badge-away">AWAY</span>
     </div>
 
     <div class="game-card away">
       <div class="game-date">7/12</div>
       <div class="game-venue"><span class="venue-icon">📍</span>사우고</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 도깨비</div>
-      <span class="game-badge badge-away">AWAY</span>
-    </div>
-    <div class="game-card away">
-      <div class="game-date">7/12</div>
-      <div class="game-venue"><span class="venue-icon">📍</span>사우고</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 도깨비</div>
+      <div class="game-opponent">도깨비</div>
       <span class="game-badge badge-away">AWAY</span>
     </div>
   </div>
@@ -701,13 +633,7 @@
     <div class="game-card home">
       <div class="game-date">8/30</div>
       <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 썸타임즈</div>
-      <span class="game-badge badge-home">HOME</span>
-    </div>
-    <div class="game-card home">
-      <div class="game-date">8/30</div>
-      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 썸타임즈</div>
+      <div class="game-opponent">썸타임즈</div>
       <span class="game-badge badge-home">HOME</span>
     </div>
   </div>
@@ -719,26 +645,14 @@
     <div class="game-card home">
       <div class="game-date">9/6</div>
       <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 타이푼</div>
-      <span class="game-badge badge-home">HOME</span>
-    </div>
-    <div class="game-card home">
-      <div class="game-date">9/6</div>
-      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 타이푼</div>
+      <div class="game-opponent">타이푼</div>
       <span class="game-badge badge-home">HOME</span>
     </div>
 
     <div class="game-card home">
       <div class="game-date">9/13</div>
       <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">1경기</span> 어셈블</div>
-      <span class="game-badge badge-home">HOME</span>
-    </div>
-    <div class="game-card home">
-      <div class="game-date">9/13</div>
-      <div class="game-venue"><span class="venue-icon">🏟️</span>회룡중</div>
-      <div class="game-opponent"><span class="game-num">2경기</span> 어셈블</div>
+      <div class="game-opponent">어셈블</div>
       <span class="game-badge badge-home">HOME</span>
     </div>
   </div>
