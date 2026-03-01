@@ -245,6 +245,67 @@
     border: 1px solid rgba(245, 158, 11, 0.3);
   }
 
+  /* 경기 결과 */
+  .game-card.finished {
+    grid-template-columns: 90px 1fr 1fr 140px;
+    grid-template-rows: auto auto;
+  }
+
+  .game-result-row {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px dashed #e2e8f0;
+  }
+
+  .game-score {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  .score-team {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  .score-num {
+    font-size: 20px;
+    font-weight: 900;
+    color: #1e293b;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .score-divider {
+    font-size: 14px;
+    color: #94a3b8;
+    font-weight: 700;
+  }
+
+  .game-pitchers {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    margin-left: auto;
+  }
+
+  .pitcher-win {
+    color: #2563eb;
+  }
+
+  .pitcher-lose {
+    color: #dc2626;
+  }
+
   /* 통계 바 */
   .stats-bar {
     display: flex;
@@ -345,6 +406,15 @@
       padding: 3px 8px;
     }
 
+    .game-result-row {
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .score-num { font-size: 17px; }
+    .score-team { font-size: 11px; }
+    .game-pitchers { font-size: 11px; gap: 8px; }
+
     .header h1 { font-size: 24px; }
     .stats-bar { gap: 16px; }
     .stat-number { font-size: 20px; }
@@ -393,13 +463,26 @@
   <div class="month-group">
     <div class="month-label">3월</div>
 
-    <div class="game-card away opening">
+    <div class="game-card away opening finished">
       <div class="game-date">3/8</div>
       <div class="game-venue"><span class="venue-icon">📍</span>회룡중</div>
       <div class="game-opponent">임팩트</div>
       <div class="badge-group">
         <span class="game-badge badge-opening">🔥 개막전</span>
         <span class="game-badge badge-away">AWAY</span>
+      </div>
+      <div class="game-result-row">
+        <div class="game-score">
+          <span class="score-team">풀베이스</span>
+          <span class="score-num">0</span>
+          <span class="score-divider">:</span>
+          <span class="score-num">0</span>
+          <span class="score-team">임팩트</span>
+        </div>
+        <div class="game-pitchers">
+          <span class="pitcher-win">승 —</span>
+          <span class="pitcher-lose">패 —</span>
+        </div>
       </div>
     </div>
 
