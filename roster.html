@@ -381,6 +381,28 @@
     color: #9ca3af;
   }
 
+  /* 미납 선수 카드 스타일 */
+  .player-card.unpaid {
+    border-color: #fbbf24;
+    background: #fffbeb;
+  }
+
+  .player-card.unpaid::before {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  }
+
+  .unpaid-label {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: rgba(245, 158, 11, 0.12);
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
   /* 푸터 */
   .footer {
     text-align: center;
@@ -484,10 +506,11 @@
       <div class="player-name">박문수</div>
       <span class="paid-badge unpaid-badge">❌ 2026 불참</span>
     </a>
-    <a href="stats.html?player=김창운" class="player-card">
+    <a href="stats.html?player=김창운" class="player-card unpaid">
       <div class="player-number">#16</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">김창운</div>
+      <span class="unpaid-label">💸 미납</span>
     </a>
     <a href="stats.html?player=조재성" class="player-card">
       <div class="player-number">#5</div>
@@ -495,10 +518,11 @@
       <div class="player-name">조재성</div>
       <span class="paid-badge">✅ 회비 납부</span>
     </a>
-    <a href="stats.html?player=황재원" class="player-card">
+    <a href="stats.html?player=황재원" class="player-card unpaid">
       <div class="player-number">#18</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">황재원</div>
+      <span class="unpaid-label">💸 미납</span>
     </a>
     <a href="stats.html?player=심민성" class="player-card">
       <div class="player-number">#23</div>
@@ -524,10 +548,11 @@
       <div class="player-name">박서진</div>
       <span class="paid-badge">✅ 회비 납부</span>
     </a>
-    <a href="stats.html?player=조상현" class="player-card">
+    <a href="stats.html?player=조상현" class="player-card unpaid">
       <div class="player-number">#33</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">조상현</div>
+      <span class="unpaid-label">💸 미납</span>
     </a>
     <a href="stats.html?player=김민수" class="player-card">
       <div class="player-number">#34</div>
@@ -535,10 +560,11 @@
       <div class="player-name">김민수</div>
       <span class="paid-badge">✅ 회비 납부</span>
     </a>
-    <a href="stats.html?player=최대웅" class="player-card">
+    <a href="stats.html?player=최대웅" class="player-card unpaid">
       <div class="player-number">#45</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">최대웅</div>
+      <span class="unpaid-label">💸 미납</span>
     </a>
     <a href="stats.html?player=조형우" class="player-card">
       <div class="player-number">#48</div>
@@ -558,10 +584,11 @@
       <div class="player-name">고선옥</div>
       <span class="paid-badge">✅ 회비 납부</span>
     </a>
-    <a href="stats.html?player=김진엽" class="player-card">
+    <a href="stats.html?player=김진엽" class="player-card unpaid">
       <div class="player-number">#80</div>
       <div class="player-avatar">⚾</div>
       <div class="player-name">김진엽</div>
+      <span class="unpaid-label">💸 미납</span>
     </a>
     <a href="stats.html?player=심재곤" class="player-card inactive">
       <div class="player-number">#100</div>
