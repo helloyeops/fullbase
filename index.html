@@ -121,7 +121,9 @@
   }
 
   .nav-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 16px;
@@ -198,6 +200,13 @@
     line-height: 1.6;
   }
 
+  .nav-extra {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
   .nav-paid {
     display: inline-block;
     margin-top: 8px;
@@ -212,8 +221,8 @@
   }
 
   .nav-arrow {
-    display: inline-block;
-    margin-top: 16px;
+    margin-top: auto;
+    padding-top: 16px;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -356,10 +365,10 @@
       <div class="nav-icon">👥</div>
       <div class="nav-title">선수 명단</div>
       <div class="nav-stat-row">
-        <div class="nav-stat">22</div>
+        <div class="nav-stat">23</div>
         <div class="nav-stat-unit">명</div>
       </div>
-      <div class="nav-desc">스태프 4명 + 선수 18명</div>
+      <div class="nav-desc">스태프 4 · 참석 15 · 불참 4</div>
       <div class="nav-arrow">바로가기 →</div>
     </a>
     <a href="finance.html" class="nav-card finance">
@@ -370,7 +379,7 @@
         <div class="nav-stat-unit">원</div>
       </div>
       <div class="nav-desc">현재 잔액</div>
-      <div class="nav-paid">💳 납부 14/19명</div>
+      <div class="nav-paid">💳 납부 14/15명</div>
       <div class="nav-arrow">바로가기 →</div>
     </a>
     <a href="stats.html" class="nav-card stats">
@@ -386,7 +395,7 @@
   </div>
 
   <div class="footer">
-    ⚾ 풀베이스 2026 시즌 — 함께 뛰는 22명의 야구인
+    ⚾ 풀베이스 2026 시즌 — 함께 뛰는 23명의 야구인
   </div>
 
 </div>
