@@ -245,6 +245,67 @@
     color: #1e293b;
   }
 
+  .nav-info-box {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .nav-card.roster .nav-info-box {
+    background: rgba(5, 150, 105, 0.06);
+    border: 1px solid rgba(5, 150, 105, 0.15);
+    color: #475569;
+  }
+
+  .nav-progress {
+    margin-top: 6px;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .nav-progress-bar {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #059669, #10b981);
+  }
+
+  .nav-progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-top: 4px;
+    color: #64748b;
+  }
+
+  .nav-card.stats .nav-info-box {
+    background: rgba(124, 58, 237, 0.06);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    color: #475569;
+  }
+
+  .nav-info-box .info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+  }
+
+  .nav-info-box .info-label {
+    color: #94a3b8;
+    font-size: 11px;
+  }
+
+  .nav-info-box .info-value {
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 12px;
+  }
+
   .nav-arrow {
     margin-top: auto;
     padding-top: 16px;
@@ -390,10 +451,14 @@
       <div class="nav-icon">👥</div>
       <div class="nav-title">선수 명단</div>
       <div class="nav-stat-row">
-        <div class="nav-stat">23</div>
-        <div class="nav-stat-unit">명</div>
+        <div class="nav-stat">19</div>
+        <div class="nav-stat-unit">명 참석</div>
       </div>
-      <div class="nav-desc">스태프 4 · 참석 15 · 불참 4</div>
+      <div class="nav-info-box">
+        <div>💳 회비 납부 현황</div>
+        <div class="nav-progress"><div class="nav-progress-bar" style="width:73.7%"></div></div>
+        <div class="nav-progress-label"><span>14명 납부</span><span>5명 미납</span></div>
+      </div>
       <div class="nav-arrow">바로가기 →</div>
     </a>
     <a href="finance.html" class="nav-card finance">
@@ -414,7 +479,11 @@
         <div class="nav-stat">2</div>
         <div class="nav-stat-unit">시즌</div>
       </div>
-      <div class="nav-desc">타격 · 투수 · 통산 기록</div>
+      <div class="nav-info-box">
+        <div class="info-row"><span class="info-label">2025 타격왕</span><span class="info-value">고선옥 .364</span></div>
+        <div class="info-row"><span class="info-label">2025 홈런왕</span><span class="info-value">신승엽 11HR</span></div>
+        <div class="info-row"><span class="info-label">2025 다승왕</span><span class="info-value">신승엽 6승</span></div>
+      </div>
       <div class="nav-arrow">바로가기 →</div>
     </a>
   </div>
