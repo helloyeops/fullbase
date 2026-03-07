@@ -83,16 +83,43 @@
     text-transform: uppercase;
   }
 
-  /* 통계 */
+  /* 통계 카드 */
   .stats-bar {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
     margin-bottom: 40px;
-    flex-wrap: wrap;
   }
 
-  .stat-item { text-align: center; }
+  .stat-item {
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  .stat-item.total::before { background: linear-gradient(90deg, #2563eb, #f59e0b); }
+  .stat-item.staff::before { background: #d97706; }
+  .stat-item.active::before { background: #059669; }
+  .stat-item.inactive-stat::before { background: #9ca3af; }
+  .stat-item.paid::before { background: #2563eb; }
+
+  .stat-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
 
   .stat-number {
     font-size: 28px;
@@ -100,12 +127,16 @@
     color: #1a2a3a;
   }
 
+  .stat-item.active .stat-number { color: #059669; }
+  .stat-item.inactive-stat .stat-number { color: #9ca3af; }
+  .stat-item.paid .stat-number { color: #2563eb; }
+
   .stat-label {
     font-size: 11px;
     color: #6b7b8d;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
   /* 스태프 섹션 */
@@ -365,7 +396,7 @@
     .staff-grid { grid-template-columns: 1fr; }
     .player-grid { grid-template-columns: repeat(2, 1fr); }
     .header h1 { font-size: 24px; }
-    .stats-bar { gap: 20px; }
+    .stats-bar { grid-template-columns: repeat(3, 1fr); gap: 10px; }
     .stat-number { font-size: 22px; }
   }
 </style>
@@ -380,24 +411,29 @@
   </div>
 
   <div class="stats-bar">
-    <div class="stat-item">
+    <div class="stat-item total">
+      <div class="stat-icon">⚾</div>
       <div class="stat-number">23</div>
       <div class="stat-label">총 인원</div>
     </div>
-    <div class="stat-item">
+    <div class="stat-item staff">
+      <div class="stat-icon">🎯</div>
       <div class="stat-number">4</div>
       <div class="stat-label">스태프</div>
     </div>
-    <div class="stat-item">
+    <div class="stat-item active">
+      <div class="stat-icon">🏃</div>
       <div class="stat-number">15</div>
       <div class="stat-label">참석 선수</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-number" style="color:#9ca3af">4</div>
+    <div class="stat-item inactive-stat">
+      <div class="stat-icon">🚫</div>
+      <div class="stat-number">4</div>
       <div class="stat-label">불참</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-number">14 / 19</div>
+    <div class="stat-item paid">
+      <div class="stat-icon">💳</div>
+      <div class="stat-number">14 / 15</div>
       <div class="stat-label">회비 납부</div>
     </div>
   </div>
