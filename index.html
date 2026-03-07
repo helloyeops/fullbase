@@ -452,8 +452,7 @@
   if (next && el) {
     const d = new Date(next.date);
     const m = d.getMonth()+1, day = d.getDate();
-    const tag = next.type==='home'?'🏟️ HOME':next.type==='away'?'📍 AWAY':'🏆';
-    el.innerHTML = '<span class="next-label">NEXT GAME</span><span class="next-detail">'+m+'/'+day+' vs '+next.opp+' '+tag+'</span>';
+    el.innerHTML = '<span class="next-label">NEXT GAME</span><span class="next-detail">'+m+'/'+day+' vs '+next.opp+' 📍'+next.venue+'</span>';
   }
 })();
 </script>
