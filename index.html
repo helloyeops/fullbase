@@ -220,6 +220,31 @@
     letter-spacing: 0.5px;
   }
 
+  .nav-next-game {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 10px;
+    background: rgba(37, 99, 235, 0.06);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    color: #2563eb;
+    line-height: 1.5;
+  }
+
+  .nav-next-game .next-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .nav-next-game .next-detail {
+    font-size: 13px;
+    color: #1e293b;
+  }
+
   .nav-arrow {
     margin-top: auto;
     padding-top: 16px;
@@ -359,6 +384,7 @@
         <div class="nav-stat-unit">경기</div>
       </div>
       <div class="nav-desc">홈 · 원정 · 인터리그</div>
+      <div id="next-game-info" class="nav-next-game"></div>
       <div class="nav-arrow">바로가기 →</div>
     </a>
     <a href="roster.html" class="nav-card roster">
@@ -399,6 +425,38 @@
   </div>
 
 </div>
+
+<script>
+(function() {
+  const games = [
+    {date:'2026-03-08',opp:'임팩트',type:'away',venue:'회룡중'},
+    {date:'2026-03-15',opp:'DNA',type:'home',venue:'회룡중'},
+    {date:'2026-03-29',opp:'서연베스트',type:'home',venue:'회룡중'},
+    {date:'2026-04-05',opp:'도깨비',type:'home',venue:'회룡중'},
+    {date:'2026-04-19',opp:'썸타임즈',type:'away',venue:'양원초'},
+    {date:'2026-04-26',opp:'타이푼',type:'away',venue:'양원초'},
+    {date:'2026-05-10',opp:'어셈블',type:'away',venue:'사우고'},
+    {date:'2026-05-17',opp:'인터리그: 순위전',type:'special',venue:'미정'},
+    {date:'2026-05-31',opp:'인터리그: 지명전',type:'special',venue:'미정'},
+    {date:'2026-06-14',opp:'임팩트',type:'home',venue:'회룡중'},
+    {date:'2026-06-21',opp:'DNA',type:'away',venue:'덕산고'},
+    {date:'2026-07-05',opp:'서연베스트',type:'away',venue:'덕산고'},
+    {date:'2026-07-12',opp:'도깨비',type:'away',venue:'사우고'},
+    {date:'2026-08-30',opp:'썸타임즈',type:'home',venue:'회룡중'},
+    {date:'2026-09-06',opp:'타이푼',type:'home',venue:'회룡중'},
+    {date:'2026-09-13',opp:'어셈블',type:'home',venue:'회룡중'}
+  ];
+  const today = new Date(); today.setHours(0,0,0,0);
+  const next = games.find(g => new Date(g.date) >= today);
+  const el = document.getElementById('next-game-info');
+  if (next && el) {
+    const d = new Date(next.date);
+    const m = d.getMonth()+1, day = d.getDate();
+    const tag = next.type==='home'?'🏟️ HOME':next.type==='away'?'📍 AWAY':'🏆';
+    el.innerHTML = '<span class="next-label">NEXT GAME</span><span class="next-detail">'+m+'/'+day+' vs '+next.opp+' '+tag+'</span>';
+  }
+})();
+</script>
 
 </body>
 </html>
