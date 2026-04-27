@@ -137,6 +137,51 @@
     margin-top: 4px;
   }
 
+  /* 테이블 액션바 */
+  .table-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d97706;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .copy-btn:hover {
+    border-color: #f59e0b;
+    background: #fffbeb;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+  }
+
+  .copy-btn:active {
+    transform: translateY(1px);
+  }
+
+  .copy-btn.copied {
+    color: #059669;
+    border-color: #10b981;
+    background: #ecfdf5;
+  }
+
+  .copy-btn .copy-icon {
+    width: 14px;
+    height: 14px;
+  }
+
   /* 테이블 */
   .table-wrap {
     background: #ffffff;
@@ -280,8 +325,15 @@
     </div>
   </div>
 
+  <div class="table-actions">
+    <button id="copy-table-btn" class="copy-btn" type="button" aria-label="테이블을 엑셀 형식으로 복사">
+      <i data-lucide="copy" class="copy-icon"></i>
+      <span class="copy-label">엑셀로 복사</span>
+    </button>
+  </div>
+
   <div class="table-wrap">
-    <table>
+    <table id="finance-table">
       <thead>
         <tr>
           <th>거래일자</th>
@@ -498,5 +550,97 @@
 </div>
 
 <script>lucide.createIcons();</script>
+<script>
+(function() {
+  const btn = document.getElementById('copy-table-btn');
+  const table = document.getElementById('finance-table');
+  if (!btn || !table) return;
+
+  function getRowsData() {
+    return Array.from(table.querySelectorAll('tr')).map(function(row) {
+      return Array.from(row.querySelectorAll('th, td')).map(function(cell) {
+        let text = cell.textContent.trim();
+        if (text === '—') text = '';
+        return text;
+      });
+    });
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function buildTSV(rows) {
+    return rows.map(function(r) { return r.join('\t'); }).join('\r\n');
+  }
+
+  function buildHTML(rows) {
+    if (!rows.length) return '';
+    const head = rows[0].map(function(c) {
+      return '<th>' + escapeHtml(c) + '</th>';
+    }).join('');
+    const body = rows.slice(1).map(function(r) {
+      return '<tr>' + r.map(function(c) {
+        return '<td>' + escapeHtml(c) + '</td>';
+      }).join('') + '</tr>';
+    }).join('');
+    return '<table border="1" cellspacing="0" cellpadding="4">' +
+           '<thead><tr>' + head + '</tr></thead>' +
+           '<tbody>' + body + '</tbody></table>';
+  }
+
+  function flash(label, copied) {
+    const original = '엑셀로 복사';
+    const span = btn.querySelector('.copy-label');
+    span.textContent = label;
+    if (copied) btn.classList.add('copied');
+    setTimeout(function() {
+      span.textContent = original;
+      btn.classList.remove('copied');
+    }, 1800);
+  }
+
+  async function copyTable() {
+    const rows = getRowsData();
+    const tsv = buildTSV(rows);
+    const html = buildHTML(rows);
+
+    try {
+      if (navigator.clipboard && window.ClipboardItem) {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'text/plain': new Blob([tsv], { type: 'text/plain' }),
+            'text/html': new Blob([html], { type: 'text/html' })
+          })
+        ]);
+        flash('✅ 복사됨!', true);
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(tsv);
+        flash('✅ 복사됨!', true);
+        return;
+      }
+      throw new Error('clipboard API unavailable');
+    } catch (err) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = tsv;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        flash('✅ 복사됨!', true);
+      } catch (e) {
+        flash('❌ 복사 실패', false);
+      }
+    }
+  }
+
+  btn.addEventListener('click', copyTable);
+})();
+</script>
 </body>
 </html>
