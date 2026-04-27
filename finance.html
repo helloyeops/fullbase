@@ -576,16 +576,17 @@
 
   function buildHTML(rows) {
     if (!rows.length) return '';
-    const head = rows[0].map(function(c) {
-      return '<th>' + escapeHtml(c) + '</th>';
+    const body = rows.map(function(r, i) {
+      const cells = r.map(function(c) {
+        const val = escapeHtml(c);
+        if (i === 0) {
+          return '<td style="background:#f1f5f9;font-weight:bold;text-align:center;">' + val + '</td>';
+        }
+        return '<td>' + val + '</td>';
+      }).join('');
+      return '<tr>' + cells + '</tr>';
     }).join('');
-    const body = rows.slice(1).map(function(r) {
-      return '<tr>' + r.map(function(c) {
-        return '<td>' + escapeHtml(c) + '</td>';
-      }).join('') + '</tr>';
-    }).join('');
-    return '<table border="1" cellspacing="0" cellpadding="4">' +
-           '<thead><tr>' + head + '</tr></thead>' +
+    return '<table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse;">' +
            '<tbody>' + body + '</tbody></table>';
   }
 
