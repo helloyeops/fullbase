@@ -360,6 +360,8 @@
 
   .game-pitchers {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
     font-size: 11px;
     font-weight: 600;
@@ -368,6 +370,10 @@
 
   .pitcher-win {
     color: #2563eb;
+  }
+
+  .pitcher-start {
+    color: #475569;
   }
 
   .pitcher-lose {
@@ -731,11 +737,42 @@
       </div>
     </div>
 
-    <div class="game-card away">
+    <div class="game-card away finished">
       <div class="game-date">4/26</div>
       <div class="game-venue"><span class="venue-icon">📍</span>양원초</div>
       <div class="game-opponent">타이푼</div>
       <span class="game-badge badge-away">AWAY</span>
+      <div class="game-results">
+        <div class="game-result-row">
+          <span class="game-num">1경기</span>
+          <div class="game-score">
+            <span class="score-team">타이푼</span>
+            <span class="score-num">18</span>
+            <span class="score-divider">:</span>
+            <span class="score-num">11</span>
+            <span class="score-team">풀베이스</span>
+          </div>
+          <div class="game-pitchers">
+            <span class="pitcher-start">선발 정대균 vs 김창운</span>
+            <span class="pitcher-win">승 정대균</span>
+          </div>
+        </div>
+        <div class="game-result-row">
+          <span class="game-num">2경기</span>
+          <div class="game-score">
+            <span class="score-team">풀베이스</span>
+            <span class="score-num">9</span>
+            <span class="score-divider">:</span>
+            <span class="score-num">7</span>
+            <span class="score-team">타이푼</span>
+          </div>
+          <div class="game-pitchers">
+            <span class="pitcher-start">선발 고선옥 vs 나용석</span>
+            <span class="pitcher-win">승 고덕한</span>
+            <span>5회 일몰승</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
