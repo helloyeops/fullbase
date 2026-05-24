@@ -140,7 +140,7 @@
   /* 지출 카테고리 */
   .expense-breakdown {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     margin: -20px 0 32px;
   }
@@ -169,6 +169,7 @@
   .expense-category.operations .expense-category-icon { background: #475569; }
   .expense-category.snack .expense-category-icon { background: #d97706; }
   .expense-category.meal .expense-category-icon { background: #dc2626; }
+  .expense-category.etc .expense-category-icon { background: #64748b; }
 
   .expense-category-title {
     font-size: 12px;
@@ -324,6 +325,12 @@
     background: rgba(220, 38, 38, 0.05);
   }
 
+  @media (max-width: 900px) {
+    .expense-breakdown {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   /* 푸터 */
   .footer {
     text-align: center;
@@ -410,6 +417,14 @@
         <div class="expense-category-title">회식비</div>
         <div class="expense-category-amount">286,800</div>
         <div class="expense-category-sub">3건</div>
+      </div>
+    </div>
+    <div class="expense-category etc">
+      <div class="expense-category-icon"><i data-lucide="more-horizontal"></i></div>
+      <div>
+        <div class="expense-category-title">기타</div>
+        <div class="expense-category-amount">0</div>
+        <div class="expense-category-sub">0건</div>
       </div>
     </div>
   </div>
