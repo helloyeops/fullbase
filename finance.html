@@ -137,6 +137,60 @@
     margin-top: 4px;
   }
 
+  /* 지출 카테고리 */
+  .expense-breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: -20px 0 32px;
+  }
+
+  .expense-category {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .expense-category-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+  }
+
+  .expense-category.operations .expense-category-icon { background: #475569; }
+  .expense-category.snack .expense-category-icon { background: #d97706; }
+  .expense-category.meal .expense-category-icon { background: #dc2626; }
+
+  .expense-category-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #64748b;
+    letter-spacing: 1px;
+  }
+
+  .expense-category-amount {
+    font-size: 22px;
+    font-weight: 900;
+    color: #1a2a3a;
+    line-height: 1.2;
+    margin-top: 2px;
+  }
+
+  .expense-category-sub {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 3px;
+  }
+
   /* 테이블 액션바 */
   .table-actions {
     display: flex;
@@ -290,6 +344,14 @@
     .summary-card { padding: 16px; }
     .summary-amount { font-size: 22px; }
 
+    .expense-breakdown {
+      grid-template-columns: 1fr;
+      margin: -14px 0 24px;
+    }
+
+    .expense-category { padding: 14px 16px; }
+    .expense-category-amount { font-size: 20px; }
+
     .table-wrap { overflow-x: auto; }
 
     table { min-width: 600px; }
@@ -322,6 +384,33 @@
       <div class="summary-label">현재 잔액</div>
       <div class="summary-amount">539,500</div>
       <div class="summary-sub">2026-05-22 기준</div>
+    </div>
+  </div>
+
+  <div class="expense-breakdown" aria-label="지출 카테고리별 합계">
+    <div class="expense-category operations">
+      <div class="expense-category-icon"><i data-lucide="clipboard-list"></i></div>
+      <div>
+        <div class="expense-category-title">운영비</div>
+        <div class="expense-category-amount">827,500</div>
+        <div class="expense-category-sub">협회비 · 운동장 · 장비 등 5건</div>
+      </div>
+    </div>
+    <div class="expense-category snack">
+      <div class="expense-category-icon"><i data-lucide="coffee"></i></div>
+      <div>
+        <div class="expense-category-title">간식비</div>
+        <div class="expense-category-amount">236,200</div>
+        <div class="expense-category-sub">8건</div>
+      </div>
+    </div>
+    <div class="expense-category meal">
+      <div class="expense-category-icon"><i data-lucide="utensils"></i></div>
+      <div>
+        <div class="expense-category-title">회식비</div>
+        <div class="expense-category-amount">286,800</div>
+        <div class="expense-category-sub">3건</div>
+      </div>
     </div>
   </div>
 
